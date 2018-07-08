@@ -2,178 +2,220 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $func = $_POST['aaa'];
+    @$action = $_POST['action'];
+    @$tabela = $_POST['tabela'];
 } else {
 
-    $func = $_GET['func'];
-    $id = $_GET['id'];
+    $action = $_GET['action'];
+    @$tabela = $_GET['tabela'];
+    @$id = $_GET['id'];
 }
 
 
 
-switch ($func) {
-    case 'deletaImovel': deletaImovel($id);
+switch ($action) {
+    case 'deleta': deleta($tabela, $id);
         break;
-    case 'adicionaImovel': adicionaImovel();
+    case 'adiciona': adiciona($tabela);
         break;
-    case 'editaImovel': editaImovel();
-        break;
-    case 'deletaBairro': deletaBairro($id);
-        break;
-    case 'adicionaBairro': adicionaBairro();
-        break;
-    case 'editaBairro': editaBairro();
+    case 'edita': edita($tabela);
         break;
     case 'lixo': moveEmail();
         break;
     case 'excluiEmail': excluiEmail();
         break;
+    case 'login':
+        $id = $_POST['user'];
+        $senha = $_POST['pass'];
+        login($id, $senha);
+        break;
+    case 'logout': logout();
+
+        break;
 }
 
-function deletaBairro($id = null) {
+function deleta($tabela = null, $id = null) {
     include('../conexao.php');
-    $sql = "DELETE FROM bairros WHERE id = '$id'";
+
+    $sql = "DELETE FROM $tabela WHERE id = '$id'";
+
+
     if ($mysqli->query($sql) === TRUE) {
         echo "Record deleted successfully";
-        header('location: bairros.php');
+        header('location: ' . $tabela . '.php');
     } else {
-        echo "Error deleting record: " . $mysqli->error;
+        echo "Erro: " . $mysqli->error;
     }
 }
 
-function adicionaBairro() {
+function adiciona($tabela = null) {
     include('../conexao.php');
-    $nome = $_POST['nome'];
+    switch ($tabela) {
+        case 'bairros':
+            $nome = $_POST['nome'];
+            $sql = ("INSERT INTO bairros (nome) VALUES ('$nome')");
+
+            break;
 
 
-
-
-    $sql = ("INSERT INTO bairros (nome) VALUES ('$nome')");
-    if ($mysqli->query($sql) === TRUE) {
-        echo "Record deleted successfully";
-        header('location: bairros.php');
-    } else {
-        echo "Error deleting record: " . $mysqli->error;
-    }
-}
-
-function editaBairro() {
-    include('../conexao.php');
-    $nome = $_POST['nome'];
-    $id = $_POST['id'];
-    $sql = ("UPDATE bairros SET nome = '$nome' WHERE id = $id");
-    if ($mysqli->query($sql) === TRUE) {
-        echo "Record deleted successfully";
-        header('location: bairros.php');
-    } else {
-        echo "Error editing record: " . $mysqli->error;
-    }
-}
-
-function deletaImovel($id = null) {
-    include('../conexao.php');
-    $sql = "DELETE FROM imoveis WHERE id = '$id'";
-    if ($mysqli->query($sql) === TRUE) {
-        echo "Record deleted successfully";
-        header('location: imoveis.php');
-    } else {
-        echo "Error deleting record: " . $mysqli->error;
-    }
-}
-
-function adicionaImovel() {
-    include('../conexao.php');
-    $titulo = $_POST['titulo'];
-    $descricao = $_POST['descricao'];
-    $latitude = $_POST['latitude'];
-    $longitude = $_POST['longitude'];
-    $bairro_id = $_POST['bairro_id'];
-    $destaque = $_POST['destaque'];
-    $imagem = basename($_FILES["imagem"]["name"]);
-
-
-    $target_dir = "../images/imoveis/";
-    $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-    if (isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["imagem"]["tmp_name"]);
-        if ($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
+        case 'pacotes':
+            $titulo = $_POST['titulo'];
+            $saida = $_POST['saida'];
+            $retorno = $_POST['retorno'];
+            $descricao = $_POST['descricao'];
+            $imagem = $_POST['imagem'];
+            $imagem = basename($_FILES["imagem"]["name"]);
+            $target_dir = "../images/pacote/";
+            $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
             $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+            if (isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["imagem"]["tmp_name"]);
+                if ($check !== false) {
+                    echo "É uma imagem - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "Não é uma imagem.";
+                    $uploadOk = 0;
+                }
+            }
+            if ($uploadOk == 0) {
+                echo "Erro.";
+            } else {
+                if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
+                    echo "O arquivo " . basename($_FILES["imagem"]["name"]) . " foi adicionado.<br>";
+                } else {
+                    echo "Erro.<br>";
+                }
+            }
+
+            $sql = ("INSERT INTO pacotes (titulo, saida, retorno, imagem, descricao) VALUES ('$titulo', '$saida','$retorno', '$imagem', '$descricao')");
+            break;
+
+        case 'imoveis':
+            $titulo = $_POST['titulo'];
+            $descricao = $_POST['descricao'];
+            $latitude = $_POST['latitude'];
+            $longitude = $_POST['longitude'];
+            $bairro_id = $_POST['bairro_id'];
+            $destaque = $_POST['destaque'];
+            $imagem = basename($_FILES["imagem"]["name"]);
+
+
+            $target_dir = "../images/imoveis/";
+            $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+            if (isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["imagem"]["tmp_name"]);
+                if ($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
-            echo "The file " . basename($_FILES["imagem"]["name"]) . " has been uploaded.<br>";
-        } else {
-            echo "Sorry, there was an error uploading your file.<br>";
-        }
+            } else {
+                if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
+                    echo "The file " . basename($_FILES["imagem"]["name"]) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+            }
+
+
+            $sql = ("INSERT INTO imoveis (titulo, descricao, latitude, longitude,  imagem, destaque, bairro_id) VALUES ('$titulo', '$descricao', '$latitude','$longitude', '$imagem', '$destaque', '$bairro_id')");
+
+            break;
     }
-
-
-    $sql = ("INSERT INTO imoveis (titulo, descricao, latitude, longitude,  imagem, destaque, bairro_id) VALUES ('$titulo', '$descricao', '$latitude','$longitude', '$imagem', '$destaque', '$bairro_id')");
     if ($mysqli->query($sql) === TRUE) {
-        echo "Record deleted successfully";
-        header('location: imoveis.php');
+        echo "Adicionado!";
+        header('location: ' . $tabela . '.php');
     } else {
-        echo "Error deleting record: " . $mysqli->error;
+        echo "Erro: " . $mysqli->error;
     }
 }
 
-function editaImovel() {
+function edita($tabela = null) {
     include('../conexao.php');
-    $id = $_POST['id'];
-    $titulo = $_POST['titulo'];
-    $descricao = $_POST['descricao'];
-    $latitude = $_POST['latitude'];
-    $longitude = $_POST['longitude'];
-    $bairro_id = $_POST['bairro_id'];
-    $destaque = $_POST['destaque'];
-    $imagem = basename($_FILES["imagem"]["name"]);
-    if (empty($imagem)) {
-        $imagem = $_POST['imagemm'];
-    }
 
-    $target_dir = "../images/imoveis/";
-    $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-    if (isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["imagem"]["tmp_name"]);
-        if ($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
+    switch ($tabela) {
+        case 'bairros':
+            $nome = $_POST['nome'];
+            $id = $_POST['id'];
+            $sql = ("UPDATE bairros SET nome = '$nome' WHERE id = $id");
+            break;
+
+
+
+
+        case 'imoveis':
+            $id = $_POST['id'];
+            $titulo = $_POST['titulo'];
+            $descricao = $_POST['descricao'];
+            $latitude = $_POST['latitude'];
+            $longitude = $_POST['longitude'];
+            $bairro_id = $_POST['bairro_id'];
+            $destaque = $_POST['destaque'];
+            $imagem = basename($_FILES["imagem"]["name"]);
+            if (empty($imagem)) {
+                $imagem = $_POST['imagemm'];
+            }
+
+            $target_dir = "../images/imoveis/";
+            $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
             $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+            if (isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["imagem"]["tmp_name"]);
+                if ($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
-            echo "The file " . basename($_FILES["imagem"]["name"]) . " has been uploaded.<br>";
-        } else {
-            echo "Sorry, there was an error uploading your file.<br>";
-        }
-    }
+            } else {
+                if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
+                    echo "The file " . basename($_FILES["imagem"]["name"]) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+            }
 
-    $sql = ("UPDATE imoveis SET titulo = '$titulo',  descricao = '$descricao', latitude = '$latitude', longitude = '$longitude', bairro_id = '$bairro_id', destaque = '$destaque',  imagem = '$imagem' WHERE id = $id");
-    if ($mysqli->query($sql) === TRUE) {
-        echo "Record deleted successfully";
-        header('location: imoveis.php');
-    } else {
-        echo "Error deleting record: " . $mysqli->error;
+            $sql = ("UPDATE imoveis SET titulo = '$titulo',  descricao = '$descricao', latitude = '$latitude', longitude = '$longitude', bairro_id = '$bairro_id', destaque = '$destaque',  imagem = '$imagem' WHERE id = $id");
+            break;
+
+
+
+        case 'g_users':
+            $nome = $_POST['nome'];
+            $email = $_POST['email'];
+            $senha = $_POST['senha'];
+
+            $sql = ("UPDATE g_users SET nome = '$nome',  email = '$email', senha = '$senha'");
+
+            $tabela = "index";
+            break;
+
+
+            if ($mysqli->query($sql) === TRUE) {
+                echo "Record deleted successfully";
+                header('location: ' . $tabela . '.php');
+            } else {
+                echo "Erro ao salvar: " . $mysqli->error;
+            }
     }
 }
 

@@ -68,7 +68,7 @@ $result = $mysqli->query($sql);
 
 
                                             <td>
-                                                <a href='../imoveis/index.php?id=<?= $dados['id'] ?>#content' target="_blank"><i class='fa fa-plus' title="Ver no site"></i></a>
+                                                <a href='../imoveis/index.php?lat=<?= $dados['latitude'] ?>&long=<?= $dados['longitude'] ?>#map' target="_blank"><i class='fa fa-plus' title="Ver no site"></i></a>
                                                 <a href='editImovel.php?id=<?= $dados['id'] ?>'><i class='fa fa-edit' title="Editar"></i></a>
                                                 <a href=''  data-toggle="modal" data-target="#<?= $dados['id'] ?>"><i class='fa fa-trash' title="Excluir"></i></a></td>
                                         </tr>
@@ -114,4 +114,5 @@ $result = $mysqli->query($sql);
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 <?php
-include('rodape.php'
+include('rodape.php');
+?>
