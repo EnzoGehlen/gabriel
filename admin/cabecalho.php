@@ -38,6 +38,8 @@
         <script src="dist/js/tinymce/jquery.tinymce.min.js" type="text/javascript"></script>
         <script src="dist/js/tinymce/tinymce.min.js" type="text/javascript"></script>
         <script>tinymce.init({selector: 'textarea'});</script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">

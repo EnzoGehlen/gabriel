@@ -2,6 +2,9 @@
 include('../conexao.php');
 $sql = "SELECT * FROM imoveis WHERE destaque = 1";
 $result = $mysqli->query($sql);
+
+$sql2 = "SELECT diferenciais.*, icon.nome FROM diferenciais, icon WHERE diferenciais.icone_id = icon.id";
+$result2 = $mysqli->query($sql2);
 ?>
 
 
@@ -22,13 +25,13 @@ $result = $mysqli->query($sql);
         <link href="../css/owl.carousel.css" rel="stylesheet" type="text/css"/>
         <link href="../css/owl.transitions.css" rel="stylesheet" type="text/css"/>
         <link href="../css/main.css" rel="stylesheet" type="text/css"/>
-     
+
     </head>
 
     <body>
         <!--header-->
         <header class="main-header" >
-                <div class="bg-color">
+            <div class="bg-color">
 
                 <nav class="nav navbar-default navbar-fixed-top">
                     <div class="container">
@@ -49,7 +52,7 @@ $result = $mysqli->query($sql);
                         </div>
                     </div>
                 </nav>
-               
+
                 <!--/ nav-->
 
             </div>
@@ -109,60 +112,24 @@ $result = $mysqli->query($sql);
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="col-md-6 wow fadeInRight delay-02s">
-                        <div class="icon">
-                            <i class="fa fa-home"></i>
+                    <?php
+                    while ($dados2 = $result2->fetch_assoc()) {
+                        ?>
+
+
+                        <div class="col-md-6 wow fadeInRight delay-02s">
+                            <div class="icon">
+                                <i class="<?= $dados2['nome'] ?>"></i>
+                            </div>
+                            <div class="icon-text">
+                                <h3 class="txt-tl"><?= $dados2['titulo'] ?></h3>
+                                <p class="txt-para"><?= $dados2['descricao'] ?></p>
+                            </div>
                         </div>
-                        <div class="icon-text">
-                            <h3 class="txt-tl">Imóveis bem avaliados</h3>
-                            <p class="txt-para">Possuímos alguma coisa, etc </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 wow fadeInRight delay-02s">
-                        <div class="icon">
-                            <i class="fa fa-cogs"></i>
-                        </div>
-                        <div class="icon-text">
-                            <h3 class="txt-tl">Diferencial 2</h3>
-                            <p class="txt-para">Texto teste de tipografia </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 wow fadeInRight delay-04s">
-                        <div class="icon">
-                            <i class="fa fa-mobile"></i>
-                        </div>
-                        <div class="icon-text">
-                            <h3 class="txt-tl">Acesse em qualquer lugar</h3>
-                            <p class="txt-para">A qualquer momento, em todo o lugar. Estamos sempre prontos para lhe atender. </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 wow fadeInRight delay-04s">
-                        <div class="icon">
-                            <i class="fa fa-desktop"></i>
-                        </div>
-                        <div class="icon-text">
-                            <h3 class="txt-tl">Diferencial 4</h3>
-                            <p class="txt-para">Texto teste de tipografiaTexto teste de tipografiaTexto teste de tipografiaTexto teste de tipografiaTexto teste de tipografiaTexto teste de tipografia </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 wow fadeInRight delay-06s">
-                        <div class="icon">
-                            <i class="fa fa-lightbulb-o"></i>
-                        </div>
-                        <div class="icon-text">
-                            <h3 class="txt-tl">Diferencial 5</h3>
-                            <p class="txt-para">Texto teste de tipografiaTexto teste de tipografiaTexto teste de tipografiaTexto teste de tipografiaTexto teste de tipografia </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 wow fadeInRight delay-06s">
-                        <div class="icon">
-                            <i class="fa fa-clock-o"></i>
-                        </div>
-                        <div class="icon-text">
-                            <h3 class="txt-tl">Diferencial top</h3>
-                            <p class="txt-para">Muito top. </p>
-                        </div>
-                    </div>
+                        <?php
+                    }
+                    ?>
+                    
                 </div>
             </div>
         </div>
@@ -184,12 +151,12 @@ $result = $mysqli->query($sql);
         </div>
     </section>
     <!---->
-<?php
-include('../contato/index.php');
-?>
+    <?php
+    include('../contato/index.php');
+    ?>
     <!---->
     <!---->
-    
+
     <footer class="" id="footer">
         <div class="container">
             <div class="row">

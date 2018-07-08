@@ -109,7 +109,13 @@ function adiciona($tabela = null) {
 
 
             $sql = ("INSERT INTO contato (titulo, email, nome,  mensagem) VALUES ('$titulo', '$email', '$nome', '$mensagem')");
-            
+            break;
+        case 'diferenciais':
+            $titulo = $_POST['titulo'];
+            $icone = $_POST['icone'];
+            $descricao = $_POST['descricao'];
+            $sql = ("INSERT INTO diferenciais (titulo, icone_id,  descricao) VALUES ('$titulo', '$icone', '$descricao')");
+            break;
     }
     if ($mysqli->query($sql) === TRUE) {
         if ($tabela == 'contato') {
@@ -190,14 +196,20 @@ function edita($tabela = null) {
 
             $tabela = "index";
             break;
+        
+        case 'diferenciais':
+            $titulo = $_POST['titulo'];
+            $icone = $_POST['icone'];
+            $descricao = $_POST['descricao'];
+            $sql = ("UPDATE diferenciais SET titulo = '$titulo', icone_id = '$icone',  descricao = '$descricao'");
+            break;
+    }
 
-
-            if ($mysqli->query($sql) === TRUE) {
-                echo "Record deleted successfully";
-                header('location: ' . $tabela . '.php');
-            } else {
-                echo "Erro ao salvar: " . $mysqli->error;
-            }
+    if ($mysqli->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+        header('location: ' . $tabela . '.php');
+    } else {
+        echo "Erro ao salvar: " . $mysqli->error;
     }
 }
 
