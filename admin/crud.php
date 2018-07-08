@@ -116,6 +116,43 @@ function adiciona($tabela = null) {
             $descricao = $_POST['descricao'];
             $sql = ("INSERT INTO diferenciais (titulo, icone_id,  descricao) VALUES ('$titulo', '$icone', '$descricao')");
             break;
+        
+         case 'g_users':
+            $id = $_POST['id'];
+            $nome = $_POST['nome'];
+            $email = $_POST['email'];
+            $senha = $_POST['senha'];
+            $imagem = basename($_FILES["imagem"]["name"]);
+            $target_dir = "../images/profile/";
+            $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+            if (isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["imagem"]["tmp_name"]);
+                if ($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
+                    echo "The file " . basename($_FILES["imagem"]["name"]) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+            }
+
+            $sql = ("INSERT INTO g_users (nome, email, senha, imagem) VALUES ('$nome', '$email', '$senha', '$imagem')");
+
+            $tabela = "index";
+            break;
     }
     if ($mysqli->query($sql) === TRUE) {
         if ($tabela == 'contato') {
@@ -188,11 +225,41 @@ function edita($tabela = null) {
 
 
         case 'g_users':
+            $id = $_POST['id'];
             $nome = $_POST['nome'];
             $email = $_POST['email'];
             $senha = $_POST['senha'];
+            $imagem = basename($_FILES["imagem"]["name"]);
+            if (empty($imagem)) {
+                $imagem = $_POST['imagemm'];
+            }
+            $target_dir = "../images/profile/";
+            $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+            if (isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["imagem"]["tmp_name"]);
+                if ($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
+                    echo "The file " . basename($_FILES["imagem"]["name"]) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+            }
 
-            $sql = ("UPDATE g_users SET nome = '$nome',  email = '$email', senha = '$senha'");
+            $sql = ("UPDATE g_users SET nome = '$nome',  email = '$email', senha = '$senha', imagem ='$imagem' WHERE id = '$id'");
 
             $tabela = "index";
             break;
@@ -243,4 +310,36 @@ function excluiEmail() {
     }
 
     header('location: email.php');
+}
+
+
+function login($id, $senha) {
+    include('../conexao.php');
+
+    $sql = ("SELECT * FROM g_users WHERE email = '$id'");
+
+    $result = $mysqli->query($sql);
+    $reg = mysqli_num_rows($result);
+
+    if ($reg == 1) {
+        $dados = $result->fetch_assoc();
+        if ($senha == $dados['senha']) {
+            @session_start();
+            $_SESSION["id_usuario"] = $dados["id"];
+            $_SESSION["nome_usuario"] = $dados["nome"];
+            header('location: index.php');
+        } else {
+            echo "<script> alert('Senha incorreta')</script> ";
+            echo "<script>window.location.replace('index.php');</script>";
+        }
+    } else {
+        echo "<script> alert('Email incorreto')</script> ";
+        echo "<script>window.location.replace('index.php');</script>";
+    }
+}
+
+function logout() {
+    session_start();
+    session_destroy();
+    header('location: index.php');
 }

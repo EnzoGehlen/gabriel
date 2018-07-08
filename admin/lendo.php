@@ -1,4 +1,5 @@
 <?php
+include('verifica.php');
 include('../conexao.php');
 $id = $_GET['id'];
 $leu = ("UPDATE contato SET lido = true WHERE id = $id");

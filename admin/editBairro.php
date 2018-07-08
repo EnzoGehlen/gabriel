@@ -1,4 +1,5 @@
 <?php
+include('verifica.php');
 include('cabecalho.php');
 include('menu.php');
 include('../conexao.php');
@@ -16,7 +17,7 @@ $dados = $result->fetch_assoc();
             </h1>
             <ol class="breadcrumb">
                 <li><a href="index.php"><i class="fa fa-dashboard"></i> Início</a></li>
-                <li><a href="imoveis.php">Bairros</a></li>
+                <li><a href="bairros.php">Bairros</a></li>
                 <li class="active">Editando bairro</li>
             </ol>
         </section>

@@ -1,4 +1,5 @@
 <?php
+include('verifica.php');
 $id =5;
 $titulo = $_GET['titulo'];
 ?>

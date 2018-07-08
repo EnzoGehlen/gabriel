@@ -1,4 +1,5 @@
 <?php
+include('verifica.php');
 include('../conexao.php');
 include('cabecalho.php');
 include('menu.php');

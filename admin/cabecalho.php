@@ -1,3 +1,11 @@
+<?php
+include('verifica.php');
+include('../conexao.php');
+$idUser = $_SESSION["id_usuario"];
+$sql = "SELECT * FROM g_users WHERE id = '$idUser' ";
+$result = $mysqli->query($sql);
+$dados = $result->fetch_assoc();
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -64,16 +72,16 @@
 
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="dist/img/avatar5.png" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Enzo Gehlen</span>
+                                    <img src="../images/profile/<?=$dados['imagem']?>" class="user-image" alt="User Image">
+                                   <span class="hidden-xs"><?= $dados['nome'] ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
+                                        <img src="../images/profile/<?=$dados['imagem']?>" class="img-circle" alt="User Image">
 
                                         <p>
-                                            Enzo Gehlen  Analista/Programador
+                                            <?= $dados['nome'] ?>
                                             <small>Administrador</small>
                                         </p>
                                     </li>
@@ -81,10 +89,10 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="perfil.php" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sair</a>
+                                            <a href="crud.php?action=logout" class="btn btn-default btn-flat">Sair</a>
                                         </div>
                                     </li>
                                 </ul>

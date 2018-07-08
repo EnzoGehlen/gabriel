@@ -1,5 +1,5 @@
 <?php
-
+include('verifica.php');
 include('cabecalho.php');
 include('menu.php');
 ?>
