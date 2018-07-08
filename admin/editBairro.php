@@ -31,7 +31,8 @@ $dados = $result->fetch_assoc();
                             </div>
                             <div class="box-body">
                                 <form action="crud.php" method='POST' enctype="multipart/form-data">
-                                    <input type="hidden" name='aaa' value='editaBairro'>
+                                    <input type="hidden" name='action' value='edita'>
+                                     <input type="hidden" name='tabela' value='bairros'>
                                     <input type="hidden" name='id' value='<?= $dados['id'] ?>'>
                                     <div class="form-group col-md-12">
                                         <label>Nome</label>

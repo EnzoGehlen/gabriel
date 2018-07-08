@@ -32,7 +32,8 @@ $result2 = $mysqli->query($sql2);
                             </div>
                             <div class="box-body">
                                 <form action="crud.php" method='POST' enctype="multipart/form-data">
-                                    <input type="hidden" name='aaa' value='adicionaImovel'>
+                                     <input type="hidden" name='action' value='adiciona'>
+                                     <input type="hidden" name='tabela' value='imoveis'>
                                     <div class="form-group col-md-12">
                                         <label>Título da publicação:</label>
                                         <input type="text" name='titulo' class="form-control">

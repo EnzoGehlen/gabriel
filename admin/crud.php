@@ -58,40 +58,6 @@ function adiciona($tabela = null) {
             break;
 
 
-        case 'pacotes':
-            $titulo = $_POST['titulo'];
-            $saida = $_POST['saida'];
-            $retorno = $_POST['retorno'];
-            $descricao = $_POST['descricao'];
-            $imagem = $_POST['imagem'];
-            $imagem = basename($_FILES["imagem"]["name"]);
-            $target_dir = "../images/pacote/";
-            $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
-            $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-            if (isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["imagem"]["tmp_name"]);
-                if ($check !== false) {
-                    echo "É uma imagem - " . $check["mime"] . ".";
-                    $uploadOk = 1;
-                } else {
-                    echo "Não é uma imagem.";
-                    $uploadOk = 0;
-                }
-            }
-            if ($uploadOk == 0) {
-                echo "Erro.";
-            } else {
-                if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
-                    echo "O arquivo " . basename($_FILES["imagem"]["name"]) . " foi adicionado.<br>";
-                } else {
-                    echo "Erro.<br>";
-                }
-            }
-
-            $sql = ("INSERT INTO pacotes (titulo, saida, retorno, imagem, descricao) VALUES ('$titulo', '$saida','$retorno', '$imagem', '$descricao')");
-            break;
 
         case 'imoveis':
             $titulo = $_POST['titulo'];
@@ -133,12 +99,28 @@ function adiciona($tabela = null) {
             $sql = ("INSERT INTO imoveis (titulo, descricao, latitude, longitude,  imagem, destaque, bairro_id) VALUES ('$titulo', '$descricao', '$latitude','$longitude', '$imagem', '$destaque', '$bairro_id')");
 
             break;
+
+        case 'contato':
+            $titulo = $_POST['titulo'];
+            $email = $_POST['email'];
+            $nome = $_POST['nome'];
+            $mensagem = $_POST['mensagem'];
+
+
+
+            $sql = ("INSERT INTO contato (titulo, email, nome,  mensagem) VALUES ('$titulo', '$email', '$nome', '$mensagem')");
+            
     }
     if ($mysqli->query($sql) === TRUE) {
-        echo "Adicionado!";
-        header('location: ' . $tabela . '.php');
+        if ($tabela == 'contato') {
+            echo "<script> alert('Sucesso!')</script> ";
+            echo "<script>window.location.replace('../index.php');</script>";
+        } else {
+            header('location: ' . $tabela . '.php');
+        }
+        echo "Record deleted successfully";
     } else {
-        echo "Erro: " . $mysqli->error;
+        echo "Erro ao salvar: " . $mysqli->error;
     }
 }
 

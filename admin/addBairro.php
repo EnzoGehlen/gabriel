@@ -30,7 +30,8 @@ $result = $mysqli->query($sql);
                             </div>
                             <div class="box-body">
                                 <form action="crud.php" method='POST' enctype="multipart/form-data">
-                                    <input type="hidden" name='aaa' value='adicionaBairro'>
+                                     <input type="hidden" name='action' value='adiciona'>
+                                     <input type="hidden" name='tabela' value='bairros'>
                                     <div class="form-group col-md-12">
                                         <label>Nome</label>
                                         <input type="text" name='nome' class="form-control">

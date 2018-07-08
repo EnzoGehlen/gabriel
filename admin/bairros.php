@@ -73,7 +73,7 @@ $result = $mysqli->query($sql);
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
-                                                    <a href='crud.php?func=deletaBairro&id=<?= $dados['id'] ?>'><button type="button"  class="btn btn-outline">Excluir</button></a>
+                                                    <a href='crud.php?action=deleta&tabela=bairros&id=<?= $dados['id'] ?>'><button type="button"  class="btn btn-outline">Excluir</button></a>
                                                 </div>
                                             </div>
                                             <!-- /.modal-content -->

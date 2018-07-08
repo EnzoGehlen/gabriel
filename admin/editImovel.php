@@ -33,7 +33,8 @@ $dados = $result->fetch_assoc();
                             </div>
                             <div class="box-body">
                                 <form action="crud.php" method='POST' enctype="multipart/form-data">
-                                    <input type="hidden" name='aaa' value='editaImovel'>
+                                     <input type="hidden" name='action' value='edita'>
+                                     <input type="hidden" name='tabela' value='imoveis'>
                                      <input type="hidden" name='id' value='<?= $dados['id'] ?>'>
                                     <div class="form-group col-md-12">
                                         <label>Título da publicação:</label>
