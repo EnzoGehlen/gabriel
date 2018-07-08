@@ -23,17 +23,9 @@ $data = explode("-", $novaData[0]);
             </div>
             <!-- /.mailbox-read-info -->
             <div class="mailbox-controls with-border text-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
-                        <i class="fa fa-trash-o"></i></button>
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
-                        <i class="fa fa-reply"></i></button>
-                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Forward">
-                        <i class="fa fa-share"></i></button>
-                </div>
+              
                   
-                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
-                    <i class="fa fa-print"></i></button>
+           
             </div>
             <!-- /.mailbox-controls -->
             <div class="mailbox-read-message">

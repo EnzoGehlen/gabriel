@@ -1,10 +1,8 @@
 
 <footer class="main-footer">
 
-    <strong>2018 -  <a href="mailto:enzo.gehlen@hotmail.com">Enzo Gehlen</a>.</strong> Todos os direitos reservados.
+    <strong>2018 -  <a href="mailto:enzo.gehlen@hotmail.com">Grupo 5</a>.</strong> Todos os direitos reservados.
 </footer>
-
-<!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
@@ -25,6 +23,9 @@
 
     </div>
 </aside>
+
+<!-- Control Sidebar -->
+
 <!-- /.control-sidebar -->
 <!-- Add the sidebar's background. This div must be placed
      immediately after the control sidebar -->
@@ -71,6 +72,11 @@
 <script src="dist/js/demo.js"></script>
 <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="plugins/tinymce/tinymce.min.js"></script>
+<script> tinymce.init({selector: 'textarea', height: 100,
+        plugins: 'advlist anchor autolink autoresize autosave charmap code codesample colorpicker contextmenu directionality emoticons  fullscreen help hr image imagetools importcss insertdatetime legacyoutput link lists media nonbreaking noneditable pagebreak paste preview print save searchreplace table template textcolor textpattern toc visualblocks visualchars wordcount',
+        toolbar1: "newdocument | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect | cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code | insertdatetime preview | forecolor backcolor | table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | visualchars visualblocks nonbreaking template pagebreak restoredraft",
+        browser_spellcheck: true});</script>
 
 
 <!-- iCheck -->
@@ -84,7 +90,7 @@
             checkboxClass: 'icheckbox_flat-blue',
             radioClass: 'iradio_flat-blue'
         });
-        $('.select2').select2()
+
         //Enable check and uncheck all functionality
         $(".checkbox-toggle").click(function () {
             var clicks = $(this).data('clicks');

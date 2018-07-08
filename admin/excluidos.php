@@ -21,23 +21,13 @@ $result = $mysqli->query($sql);
                 </button>
                 <div class="btn-group">
                     <button type="button" onclick="apaga()" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+              
                 </div>
                 <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                    1-50/200
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                    </div>
-                    <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
+              
             </div>
              <form name="formu" action="crud.php" method="POST">
-                 <input type="hidden" name="aaa" value="excluiEmail">
+                 <input type="hidden" name="action" value="excluiEmail">
             <div class="table-responsive mailbox-messages">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>

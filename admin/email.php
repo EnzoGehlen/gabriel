@@ -15,7 +15,7 @@ $lidos = mysqli_num_rows($result);
     <section class="content-header">
         <h1>
 
-            <small>Lucca Lounge & Fun</small>
+            <small>Gabriel Chaves imóveis</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="index.php"><i class="fa fa-dashboard"></i> Início</a></li>
@@ -27,7 +27,7 @@ $lidos = mysqli_num_rows($result);
     <section class="content">
         <div class="row">
             <div class="col-md-3">
-                <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Escrever</a>
+               
 
                 <div class="box box-solid">
                     <div class="box-header with-border">
