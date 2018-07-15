@@ -16,8 +16,8 @@ $result = $mysqli->query($sql);
             </h1>
             <ol class="breadcrumb">
                 <li><a href="index.php"><i class="fa fa-dashboard"></i> Início</a></li>
-                <li><a href="categorias.php">categorias</a></li>
-                <li class="active">Adicionando bairro</li>
+                <li><a href="categorias.php">Categorias</a></li>
+                <li class="active">Adicionando categoria</li>
             </ol>
         </section>
         <section >
@@ -27,7 +27,7 @@ $result = $mysqli->query($sql);
                     <div class="col-xs-12">
                         <div class="box box-info">
                             <div class="box-header">
-                                <h3 class="box-title">Adicionar novo bairro</h3>
+                                <h3 class="box-title">Adicionar nova categoria</h3>
                             </div>
                             <div class="box-body">
                                 <form action="crud.php" method='POST' enctype="multipart/form-data">

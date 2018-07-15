@@ -4,7 +4,7 @@ include('cabecalho.php');
 include('menu.php');
 include('../conexao.php');
 
-$sql = "SELECT * FROM bairros";
+$sql = "SELECT * FROM categorias";
 $result = $mysqli->query($sql);
 ?>
 
@@ -21,7 +21,7 @@ $result = $mysqli->query($sql);
             </h1>
             <ol class="breadcrumb">
                 <li><a href="index.php"><i class="fa fa-dashboard"></i> Início</a></li>
-                <li><a href="imoveis.php">Bairros</a></li>
+                <li><a href="imoveis.php">categorias</a></li>
                 <li class="active">Listando todos</li>
             </ol>
         </section>
@@ -33,7 +33,7 @@ $result = $mysqli->query($sql);
 
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Bairros</h3>
+                            <h3 class="box-title">categorias</h3>
                             <a href='addBairro.php'> <button class='btn btn-adn pull-right'>Adicionar</button></a>
                           
                         </div>
@@ -74,7 +74,7 @@ $result = $mysqli->query($sql);
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
-                                                    <a href='crud.php?action=deleta&tabela=bairros&id=<?= $dados['id'] ?>'><button type="button"  class="btn btn-outline">Excluir</button></a>
+                                                    <a href='crud.php?action=deleta&tabela=categorias&id=<?= $dados['id'] ?>'><button type="button"  class="btn btn-outline">Excluir</button></a>
                                                 </div>
                                             </div>
                                             <!-- /.modal-content -->

@@ -1,7 +1,7 @@
 
 <footer class="main-footer">
 
-    <strong>2018 -  <a href="mailto:enzo.gehlen@hotmail.com">Grupo 5</a>.</strong> Todos os direitos reservados.
+    <strong>2018 -  <a href="mailto:enzo.gehlen@hotmail.com">Enzo Gehlen</a> - </strong> Todos os direitos reservados.
 </footer>
 <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->

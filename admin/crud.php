@@ -41,8 +41,12 @@ function deleta($tabela = null, $id = null) {
 
 
     if ($mysqli->query($sql) === TRUE) {
-        echo "Record deleted successfully";
-        header('location: ' . $tabela . '.php');
+        if ($tabela == 'vendas') {
+            header('location: contato_vendas.php');
+        } else {
+            echo "Record deleted successfully";
+            header('location: ' . $tabela . '.php');
+        }
     } else {
         echo "Erro: " . $mysqli->error;
     }
@@ -51,9 +55,9 @@ function deleta($tabela = null, $id = null) {
 function adiciona($tabela = null) {
     include('../conexao.php');
     switch ($tabela) {
-        case 'bairros':
+        case 'categorias':
             $nome = $_POST['nome'];
-            $sql = ("INSERT INTO bairros (nome) VALUES ('$nome')");
+            $sql = ("INSERT INTO categorias (nome) VALUES ('$nome')");
 
             break;
 
@@ -65,6 +69,7 @@ function adiciona($tabela = null) {
             $latitude = $_POST['latitude'];
             $longitude = $_POST['longitude'];
             $bairro_id = $_POST['bairro_id'];
+            $categoria_id = $_POST['categoria_id'];
             $destaque = $_POST['destaque'];
             $imagem = basename($_FILES["imagem"]["name"]);
 
@@ -96,7 +101,7 @@ function adiciona($tabela = null) {
             }
 
 
-            $sql = ("INSERT INTO imoveis (titulo, descricao, latitude, longitude,  imagem, destaque, bairro_id) VALUES ('$titulo', '$descricao', '$latitude','$longitude', '$imagem', '$destaque', '$bairro_id')");
+            $sql = ("INSERT INTO imoveis (titulo, descricao, latitude, longitude,  imagem, destaque, bairro_id, categoria_id) VALUES ('$titulo', '$descricao', '$latitude','$longitude', '$imagem', '$destaque', '$bairro_id', '$categoria_id')");
 
             break;
 
@@ -116,8 +121,8 @@ function adiciona($tabela = null) {
             $descricao = $_POST['descricao'];
             $sql = ("INSERT INTO diferenciais (titulo, icone_id,  descricao) VALUES ('$titulo', '$icone', '$descricao')");
             break;
-        
-         case 'g_users':
+
+        case 'g_users':
             $id = $_POST['id'];
             $nome = $_POST['nome'];
             $email = $_POST['email'];
@@ -153,9 +158,77 @@ function adiciona($tabela = null) {
 
             $tabela = "index";
             break;
+
+        case 'vendas':
+            $nome = $_POST['nome'];
+            $cpf = $_POST['cpf'];
+            $cidade_pessoa = $_POST['cidade_pessoa'];
+            $email = $_POST['email'];
+            $estado_pessoa = $_POST['estado_pessoa'];
+            $cep_pessoa = $_POST['cep_pessoa'];
+            $telefone = $_POST['telefone'];
+            $telefone2 = $_POST['telefone2'];
+            $endereco_imovel = $_POST['endereco_imovel'];
+            $numero = $_POST['numero'];
+            $bairro_imovel = $_POST['bairro_imovel'];
+            $cidade_imovel = $_POST['cidade_imovel'];
+            $estado_imovel = $_POST['estado_imovel'];
+            $cep_imovel = $_POST['cep_imovel'];
+            $descricao = $_POST['descricao'];
+            $img1 = basename($_FILES["img1"]['name']);
+            @$img2 = basename($_FILES["img2"]['name']);
+            @$img3 = basename($_FILES["img3"]['name']);
+
+
+
+
+            $target_dir = "../images/contato_venda/";
+            $target_file1 = $target_dir . basename($_FILES["img1"]['name']);
+            @$target_file2 = $target_dir . basename($_FILES["img2"]['name']);
+            @$target_file3 = $target_dir . basename($_FILES["img3"]['name']);
+            $uploadOk = 1;
+            $imageFileType1 = strtolower(pathinfo($target_file1, PATHINFO_EXTENSION));
+            $imageFileType2 = strtolower(pathinfo($target_file2, PATHINFO_EXTENSION));
+            $imageFileType3 = strtolower(pathinfo($target_file3, PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+            if (isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["img1"]["tmp_name"]);
+                if ($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+            } else {
+                if ((move_uploaded_file($_FILES["img1"]["tmp_name"], $target_file1))) {
+                    echo "The file " . basename($_FILES["img1"]['name']) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+                if (( move_uploaded_file($_FILES["img2"]["tmp_name"], $target_file2))) {
+                    echo "The file " . basename($_FILES["img2"]['name']) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+                if (( move_uploaded_file($_FILES["img3"]["tmp_name"], $target_file3))) {
+                    echo "The file " . basename($_FILES["img3"]['name']) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+            }
+
+            $sql = ("INSERT INTO vendas (nome_pessoa,  cpf_pessoa, cidade_pessoa, estado_pessoa, cep, email_pessoa, telefone_pessoa, telefone_pessoa2, endereco_imovel, numero_imovel, bairro_imovel, cidade_imovel, estado_imovel, cep_imovel, descricao_imovel, img1, img2, img3) "
+                    . "VALUES ('$nome', '$cpf', '$cidade_pessoa','$estado_pessoa', '$cep_pessoa','$email', '$telefone', '$telefone2', '$endereco_imovel', '$numero', '$bairro_imovel', '$cidade_imovel', '$estado_imovel', '$cep_imovel', '$descricao', '$img1', '$img2', '$img3')");
+
+            break;
     }
     if ($mysqli->query($sql) === TRUE) {
-        if ($tabela == 'contato') {
+        if ($tabela == 'contato' or $tabela == 'vendas') {
             echo "<script> alert('Sucesso!')</script> ";
             echo "<script>window.location.replace('../index.php');</script>";
         } else {
@@ -171,10 +244,10 @@ function edita($tabela = null) {
     include('../conexao.php');
 
     switch ($tabela) {
-        case 'bairros':
+        case 'categorias':
             $nome = $_POST['nome'];
             $id = $_POST['id'];
-            $sql = ("UPDATE bairros SET nome = '$nome' WHERE id = $id");
+            $sql = ("UPDATE categorias SET nome = '$nome' WHERE id = $id");
             break;
 
 
@@ -187,6 +260,7 @@ function edita($tabela = null) {
             $latitude = $_POST['latitude'];
             $longitude = $_POST['longitude'];
             $bairro_id = $_POST['bairro_id'];
+            $categoria_id = $_POST['categoria_id'];
             $destaque = $_POST['destaque'];
             $imagem = basename($_FILES["imagem"]["name"]);
             if (empty($imagem)) {
@@ -219,7 +293,7 @@ function edita($tabela = null) {
                 }
             }
 
-            $sql = ("UPDATE imoveis SET titulo = '$titulo',  descricao = '$descricao', latitude = '$latitude', longitude = '$longitude', bairro_id = '$bairro_id', destaque = '$destaque',  imagem = '$imagem' WHERE id = $id");
+            $sql = ("UPDATE imoveis SET titulo = '$titulo',  descricao = '$descricao', latitude = '$latitude', longitude = '$longitude', bairro_id = '$bairro_id',  categoria_id = '$categoria_id', destaque = '$destaque',  imagem = '$imagem' WHERE id = $id");
             break;
 
 
@@ -263,7 +337,7 @@ function edita($tabela = null) {
 
             $tabela = "index";
             break;
-        
+
         case 'diferenciais':
             $titulo = $_POST['titulo'];
             $icone = $_POST['icone'];
@@ -311,7 +385,6 @@ function excluiEmail() {
 
     header('location: email.php');
 }
-
 
 function login($id, $senha) {
     include('../conexao.php');

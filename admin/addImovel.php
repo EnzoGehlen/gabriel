@@ -5,8 +5,10 @@ include('../conexao.php');
 
 $sql = "SELECT * FROM imoveis";
 $result = $mysqli->query($sql);
-$sql2 = "SELECT * FROM bairros";
+$sql2 = "SELECT * FROM categorias";
 $result2 = $mysqli->query($sql2);
+$sql3 = "SELECT * FROM bairros";
+$result3 = $mysqli->query($sql3);
 ?>
 <div class="wrapper">
     <div class="content-wrapper">
@@ -43,11 +45,26 @@ $result2 = $mysqli->query($sql2);
                                         <textarea type="textarea" name='descricao' class="form-control"></textarea>
                                     </div>
                                     <div class="form-group col-md-4">
+                                        <label>Categoria:</label>
+
+                                        <select name="categoria_id" class="form-control select2" >
+                                            <?php 
+                                            while ($categorias = $result2->fetch_assoc()){
+                                            ?>
+                                            <option  value="<?= $categorias['id'] ?>"><?= $categorias['nome'] ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+
+
+                                    </div>
+                                     <div class="form-group col-md-4">
                                         <label>Bairro:</label>
 
                                         <select name="bairro_id" class="form-control select2" >
                                             <?php 
-                                            while ($bairros = $result2->fetch_assoc()){
+                                            while ($bairros = $result3->fetch_assoc()){
                                             ?>
                                             <option  value="<?= $bairros['id'] ?>"><?= $bairros['nome'] ?></option>
                                             <?php

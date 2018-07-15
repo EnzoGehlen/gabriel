@@ -4,7 +4,7 @@ include('cabecalho.php');
 include('menu.php');
 include('../conexao.php');
 
-$sql = "SELECT * FROM imoveis";
+$sql = "SELECT * FROM categorias";
 $result = $mysqli->query($sql);
 ?>
 
@@ -21,7 +21,7 @@ $result = $mysqli->query($sql);
             </h1>
             <ol class="breadcrumb">
                 <li><a href="index.php"><i class="fa fa-dashboard"></i> Início</a></li>
-                <li><a href="imoveis.php">Imóveis</a></li>
+                <li><a href="imoveis.php">Categorias</a></li>
                 <li class="active">Listando todos</li>
             </ol>
         </section>
@@ -33,44 +33,31 @@ $result = $mysqli->query($sql);
 
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Imóveis</h3>
-                            <a href='addImovel.php'> <button class='btn btn-adn pull-right'>Adicionar</button></a>
-
+                            <h3 class="box-title">Categorias</h3>
+                            <a href='addCategoria.php'> <button class='btn btn-adn pull-right'>Adicionar</button></a>
+                          
                         </div>
 
                         <div class="box-body">
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Título</th>
-                                        <th>Descrição</th>
-                                        <th>Categoria</th>
-                                        <th>Imagem</th>
+                                        <th>Nome</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     while ($dados = $result->fetch_assoc()) {
-                                        $id = $dados['categoria_id'];
-                                        $sql2 = "SELECT * FROM categorias WHERE id = '$id'";
-                                        $result2 = $mysqli->query($sql2);
-                                        $nome_bairro = $result2->fetch_assoc();
+                                        
                                         ?>
                                         <tr>
-                                            <td><?= $dados['titulo'] ?></td>                                       
+                                            <td><?= $dados['nome'] ?></td>                                       
 
-                                             <td>  <?= substr($dados['descricao'], 0, 40); ?> ... </td>
-
-                                            <td><?= $nome_bairro['nome'] ?></td>
-
-                                            <td><img class='enzo' src="../images/imoveis/<?= $dados['imagem'] ?>" alt=""/></td>
-
-
-
+                                           
                                             <td>
-                                                <a href='../imoveis/index.php?lat=<?= $dados['latitude'] ?>&long=<?= $dados['longitude'] ?>#map' target="_blank"><i class='fa fa-plus' title="Ver no site"></i></a>
-                                                <a href='editImovel.php?id=<?= $dados['id'] ?>'><i class='fa fa-edit' title="Editar"></i></a>
+                                                
+                                                <a href='editCategoria.php?id=<?= $dados['id'] ?>'><i class='fa fa-edit' title="Editar"></i></a>
                                                 <a href=''  data-toggle="modal" data-target="#<?= $dados['id'] ?>"><i class='fa fa-trash' title="Excluir"></i></a></td>
                                         </tr>
 
@@ -83,11 +70,11 @@ $result = $mysqli->query($sql);
                                                     <h4 class="modal-title">Atenção</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Você tem certeza que deseja excluir o imovel <?= $dados['titulo'] ?>?</p>
+                                                    <p>Você tem certeza que deseja excluir a categoria <?= $dados['nome'] ?>?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
-                                                    <a href='crud.php?action=deleta&tabela=imoveis&id=<?= $dados['id'] ?>'><button type="button"  class="btn btn-outline">Excluir</button></a>
+                                                    <a href='crud.php?action=deleta&tabela=categorias&id=<?= $dados['id'] ?>'><button type="button"  class="btn btn-outline">Excluir</button></a>
                                                 </div>
                                             </div>
                                             <!-- /.modal-content -->

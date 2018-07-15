@@ -6,6 +6,8 @@ include('../conexao.php');
 $idImovel = $_GET['id'];
 $sql = "SELECT * FROM imoveis WHERE id = $idImovel";
 $sql2 = "SELECT * FROM bairros";
+$sql3 = "SELECT * FROM categorias";
+$result3 = $mysqli->query($sql3);
 $result2 = $mysqli->query($sql2);
 $result = $mysqli->query($sql);
 $dados = $result->fetch_assoc();
@@ -57,6 +59,26 @@ $dados = $result->fetch_assoc();
                                                 <?php } else {
                                                     ?>
                                                     <option  value="<?= $bairros['id'] ?>"><?= $bairros['nome'] ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+
+
+                                    </div>
+                                      <div class="form-group col-md-4">
+                                        <label>Categoria:</label>
+
+                                        <select name="categoria_id" class="form-control select2" >
+                                            <?php
+                                            while ($categorias = $result3->fetch_assoc()) {
+                                                if ($categorias['id'] == $dados['categoria_id']) {
+                                                    ?>
+                                                    <option selected value="<?= $categorias['id'] ?>"><?= $categorias['nome'] ?></option>
+                                                <?php } else {
+                                                    ?>
+                                                    <option  value="<?= $categorias['id'] ?>"><?= $categorias['nome'] ?></option>
                                                     <?php
                                                 }
                                             }

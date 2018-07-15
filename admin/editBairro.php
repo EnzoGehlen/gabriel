@@ -4,7 +4,7 @@ include('cabecalho.php');
 include('menu.php');
 include('../conexao.php');
 $idBairro = $_GET['id'];
-$sql = "SELECT * FROM bairros WHERE id = $idBairro";
+$sql = "SELECT * FROM categorias WHERE id = $idBairro";
 $result = $mysqli->query($sql);
 $dados = $result->fetch_assoc();
 ?>
@@ -17,7 +17,7 @@ $dados = $result->fetch_assoc();
             </h1>
             <ol class="breadcrumb">
                 <li><a href="index.php"><i class="fa fa-dashboard"></i> Início</a></li>
-                <li><a href="bairros.php">Bairros</a></li>
+                <li><a href="categorias.php">categorias</a></li>
                 <li class="active">Editando bairro</li>
             </ol>
         </section>
@@ -33,7 +33,7 @@ $dados = $result->fetch_assoc();
                             <div class="box-body">
                                 <form action="crud.php" method='POST' enctype="multipart/form-data">
                                     <input type="hidden" name='action' value='edita'>
-                                     <input type="hidden" name='tabela' value='bairros'>
+                                     <input type="hidden" name='tabela' value='categorias'>
                                     <input type="hidden" name='id' value='<?= $dados['id'] ?>'>
                                     <div class="form-group col-md-12">
                                         <label>Nome</label>

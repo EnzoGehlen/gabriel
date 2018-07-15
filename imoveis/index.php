@@ -1,9 +1,9 @@
 <?php
 include('../conexao.php');
 $imoveis = "SELECT * FROM imoveis";
-$bairros = "SELECT * FROM bairros";
+$categorias = "SELECT * FROM categorias";
 $result = $mysqli->query($imoveis);
-$result2 = $mysqli->query($bairros);
+$result2 = $mysqli->query($categorias);
 ?>
 <html>
     <head>
@@ -99,7 +99,7 @@ $result2 = $mysqli->query($bairros);
                         <nav id="options" class="work-nav">
                             <ul id="filters" class="option-set" data-option-key="filter">
 
-                                <li><a href="#filter" data-option-value="*" class="selected">Todos os bairros</a></li>
+                                <li><a href="#filter" data-option-value="*" class="selected">Todos os categorias</a></li>
                                 <?php
                                 while ($dados = $result2->fetch_assoc()) {
                                     ?>
@@ -120,14 +120,14 @@ $result2 = $mysqli->query($bairros);
 
                                     <?php
                                     while ($dados2 = $result->fetch_assoc()) {
-                                        $id = $dados2['bairro_id'];
-                                        $sql3 = "SELECT * FROM bairros where id = '$id' ";
+                                        $id = $dados2['categoria_id'];
+                                        $sql3 = "SELECT * FROM categorias where id = '$id' ";
                                         $result3 = $mysqli->query($sql3);
                                         $bairro = $result3->fetch_assoc();
                                         ?>
                                         <li class="item-thumbs span3 <?= $bairro['id'] ?>">
                                             <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                                            <a  class="hover-wrap fancybox" data-fancybox-group="gallery" title="<?= $dados2['titulo'] ?> &nbsp;<a href='?lat=<?= $dados2['latitude'] ?>&long=<?= $dados2['longitude'] ?>#map' title='ver no mapa'><span style='color: #FFF; font-size: 10px; position: absolute;' class='fa fa-external-link'> </span> </a>" href="../images/imoveis/<?= $dados2['imagem'] ?>">
+                                            <a  class="hover-wrap fancybox" data-fancybox-group="gallery" title="<?= $dados2['titulo'] ?> &nbsp;<a href='?lat=<?= $dados2['latitude'] ?>&long=<?= $dados2['longitude'] ?>#map' title='ver no mapa'><span style='color: #FFF; font-size: 10px; position: absolute;' class='fa fa-map-marker'> </span> </a>" href="../images/imoveis/<?= $dados2['imagem'] ?>">
                                                 <span  class="overlay-img"></span>
                                                 <span  class="overlay-img-thumb fa fa-plus"> </span>
                                             </a>
