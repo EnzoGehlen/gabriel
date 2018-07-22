@@ -94,7 +94,7 @@ $result2 = $mysqli->query($sql2);
         <div class="container">
             <div class="row">
                 <div class="cta-info text-center">
-                    <h3><span class="dec-tec">“</span>Corretor é sinônimo de negócio teste  seguro e tranquilo<span class="dec-tec">”</span> -Gabriel Chaves</h3>
+                    <h3><span class="dec-tec">“</span>Corretor é sinônimo de negócio teste 1 seguro e tranquilo<span class="dec-tec">”</span> -Gabriel Chaves</h3>
                 </div>
             </div>
         </div>
