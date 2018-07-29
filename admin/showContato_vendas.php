@@ -5,8 +5,8 @@ include('menu.php');
 include('../conexao.php');
 
 $id = $_GET['id'];
-//$leu = ("UPDATE vendas SET lido = true WHERE id = $id");
-//$mysqli->query($leu);
+$leu = ("UPDATE vendas SET lido = true WHERE id = $id");
+$mysqli->query($leu);
 
 $sql = "SELECT * FROM vendas where id = $id";
 $result = $mysqli->query($sql);

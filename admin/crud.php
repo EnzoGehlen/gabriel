@@ -110,6 +110,17 @@ function adiciona($tabela = null) {
             $email = $_POST['email'];
             $nome = $_POST['nome'];
             $mensagem = $_POST['mensagem'];
+            $op = $_POST['op'];
+            $result = $_POST['result'];
+            $op = explode('+', $op);
+            
+
+            if (!($result == ($op[1] + $op[0]))) {
+                echo "<script> alert('Soma incorreta!')</script> ";
+                echo "<script>window.location.replace('../index.php');</script>";
+                exit;
+            }
+            
 
 
 
@@ -178,6 +189,17 @@ function adiciona($tabela = null) {
             $img1 = basename($_FILES["img1"]['name']);
             @$img2 = basename($_FILES["img2"]['name']);
             @$img3 = basename($_FILES["img3"]['name']);
+            
+            $op = $_POST['op'];
+            $result = $_POST['result'];
+            $op = explode('+', $op);
+            
+
+            if (!($result == ($op[1] + $op[0]))) {
+                echo "<script> alert('Soma incorreta!')</script> ";
+                echo "<script>window.location.replace('../index.php');</script>";
+                exit;
+            }
 
 
 

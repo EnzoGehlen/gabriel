@@ -1,3 +1,7 @@
+<?php
+$a = rand(0, 19);
+$b = rand(0, 19);
+?>
 <section class="section-padding wow fadeInUp delay-05s" id="contact">
     <div class="container">
         <div class="row white">
@@ -16,6 +20,7 @@
                         <form action="../admin/crud.php" METHOD="post">
                             <input type="hidden" name='action' value='adiciona'>
                             <input type="hidden" name='tabela' value='contato'>
+
                             <div class="form-group">
                                 <input type="text" name="nome" class="form-control" id="name" placeholder="Nome *" required />
 
@@ -34,12 +39,16 @@
                                 <textarea class="form-control" name="mensagem"  required placeholder="Mensagem"></textarea>
 
                             </div>
-                            <input type="submit" class="btn btn-send">
-                        </form>
-                        <form action="../admin/crud.php" method="post"  class="contactForm">
+                            <div class="form-group col-md-8">
+                                <input type="text" class="form-control" name="op" disabled value="<?= '' . $a . ' + ' . $b . '' ?>">
+                                <input type='hidden' class="form-control" name="op" value="<?= '' . $a . ' + ' . $b . '' ?>">
+                                <input type="number" class="form-control" name="result" placeholder="Resultado da soma:">
+                            </div>
+                            
+                            <div class='form-group col-md-12'> <input type="submit" class="btn btn-send"></div>
 
-
                         </form>
+
                     </div>
 
 
@@ -113,7 +122,7 @@
                             <input type="text" class="form-control" name="numero" id="email" placeholder="Número "  />
 
                         </div>
-                         <div class="form-group col-md-3">
+                        <div class="form-group col-md-3">
                             <input type="text" class="form-control" name="bairro_imovel" id="email" placeholder="Bairro *" required />
 
                         </div>
@@ -129,10 +138,10 @@
                             <input type="text" class="form-control" name="cep_imovel" id="email" placeholder="CEP"  />
 
                         </div>
-                         <div class="form-group col-md-12">
-                                <textarea class="form-control" name="descricao"  required placeholder="Descrição"></textarea>
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control" name="descricao"  required placeholder="Descrição"></textarea>
 
-                            </div>
+                        </div>
                         <div class="col-md-12">  
                             <h4 class="cont-title"><font style="color: black; font-size: 18px">Insira até 3 fotos:</font></h4>
                         </div>
@@ -140,13 +149,19 @@
                             <input type="file" class="form-control" name="img1" required  />
 
                         </div>
-                       <div class="form-group col-md-3">
+                        <div class="form-group col-md-3">
                             <input type="file" class="form-control" name="img2"  />
 
                         </div>
                         <div class="form-group col-md-3">
                             <input type="file" class="form-control" name="img3"  />
 
+                        </div>
+                        <div class="col-md-12"></div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" name="op" disabled value="<?= '' . $a . ' + ' . $b . '' ?>">
+                            <input type='hidden' class="form-control" name="op" value="<?= '' . $a . ' + ' . $b . '' ?>">
+                            <input type="number" class="form-control" name="result" placeholder="Resultado da soma:">
                         </div>
                         <div class="form-group col-md-12">
                             <input type="submit" class="btn btn-send">
@@ -164,12 +179,12 @@
 </section>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-$( "#showr" ).click(function() {
-  $( "#contato" ).first().show( "slow", function showNext() {
-    $( this ).next( "#contato" ).show( "slow", showNext );
-  });
-});
- 
+    $("#showr").click(function () {
+        $("#contato").first().show("slow", function showNext() {
+            $(this).next("#contato").show("slow", showNext);
+        });
+    });
+
 
 </script>
 <!---->
