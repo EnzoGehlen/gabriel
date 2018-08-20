@@ -25,6 +25,7 @@ $result2 = $mysqli->query($sql2);
         <link href="../css/owl.carousel.css" rel="stylesheet" type="text/css"/>
         <link href="../css/owl.transitions.css" rel="stylesheet" type="text/css"/>
         <link href="../css/main.css" rel="stylesheet" type="text/css"/>
+        
 
     </head>
 
@@ -45,7 +46,7 @@ $result2 = $mysqli->query($sql2);
                             <div class="collapse navbar-collapse navbar-right" id="mynavbar">
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="../">Início</a></li>
-                                    <li><a href="../imoveis/">Imóveis</a></li>
+
                                     <li><a href="#contact">Contato</a></li>
                                 </ul>
                             </div>
@@ -64,7 +65,7 @@ $result2 = $mysqli->query($sql2);
             <?php
             while ($dados = $result->fetch_assoc()) {
                 ?>
-                <div class="item" style="background-image: url(../images/imoveis/<?= $dados['imagem'] ?>);
+                <div class="item" style="background-image: url(../images/imoveis/<?= $dados['imagem1'] ?>);
                      opacity: 1; ">
                     <div class="slider-inner" style="background: rgba(0,0,0,0.5);">
                         <div class="container">
@@ -101,7 +102,7 @@ $result2 = $mysqli->query($sql2);
     </section>
     <!---->
     <!---->
-    <section id="feature" class="section-padding">
+<!--    <section id="feature" class="section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 wow fadeInLeft delay-05s">
@@ -112,46 +113,32 @@ $result2 = $mysqli->query($sql2);
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <?php
-                    while ($dados2 = $result2->fetch_assoc()) {
-                        ?>
+    <?php
+    while ($dados2 = $result2->fetch_assoc()) {
+        ?>
 
 
-                        <div class="col-md-6 wow fadeInRight delay-02s">
-                            <div class="icon">
-                                <i class="<?= $dados2['nome'] ?>"></i>
+                            <div class="col-md-6 wow fadeInRight delay-02s">
+                                <div class="icon">
+                                    <i class="<?= $dados2['nome'] ?>"></i>
+                                </div>
+                                <div class="icon-text">
+                                    <h3 class="txt-tl"><?= $dados2['titulo'] ?></h3>
+                                    <p class="txt-para"><?= $dados2['descricao'] ?></p>
+                                </div>
                             </div>
-                            <div class="icon-text">
-                                <h3 class="txt-tl"><?= $dados2['titulo'] ?></h3>
-                                <p class="txt-para"><?= $dados2['descricao'] ?></p>
-                            </div>
-                        </div>
-                        <?php
-                    }
-                    ?>
+        <?php
+    }
+    ?>
                     
                 </div>
             </div>
         </div>
-    </section>
-    <!---->
-    <section class="section-padding parallax bg-image-2 section wow fadeIn delay-08s" id="cta-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="cta-txt">
-                        <h3>ALgum título ou informação</h3>
-                        <p>Peguei uma imagem qualquer de cidade em hd, pode trocar se quiser</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <a href="#" class="btn btn-submit">botãozin maroto</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!---->
+    </section>-->
+
     <?php
+    include('../imoveis/index.php');
+
     include('../contato/index.php');
     ?>
     <!---->
@@ -210,5 +197,6 @@ $result2 = $mysqli->query($sql2);
         })
 
     </script>
+
 </body>
 </html>

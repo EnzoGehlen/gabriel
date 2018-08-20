@@ -34,40 +34,44 @@ $result3 = $mysqli->query($sql3);
                             </div>
                             <div class="box-body">
                                 <form action="crud.php" method='POST' enctype="multipart/form-data">
-                                     <input type="hidden" name='action' value='adiciona'>
-                                     <input type="hidden" name='tabela' value='imoveis'>
+                                    <input type="hidden" name='action' value='adiciona'>
+                                    <input type="hidden" name='tabela' value='imoveis'>
                                     <div class="form-group col-md-12">
                                         <label>Título da publicação:</label>
                                         <input type="text" name='titulo' class="form-control">
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label>Descrição:</label>
+                                        <label>Características:</label>
                                         <textarea type="textarea" name='descricao' class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Infraestrutura:</label>
+                                        <textarea type="textarea" name='infra' class="form-control"></textarea>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Categoria:</label>
 
                                         <select name="categoria_id" class="form-control select2" >
-                                            <?php 
-                                            while ($categorias = $result2->fetch_assoc()){
-                                            ?>
-                                            <option  value="<?= $categorias['id'] ?>"><?= $categorias['nome'] ?></option>
                                             <?php
+                                            while ($categorias = $result2->fetch_assoc()) {
+                                                ?>
+                                                <option  value="<?= $categorias['id'] ?>"><?= $categorias['nome'] ?></option>
+                                                <?php
                                             }
                                             ?>
                                         </select>
 
 
                                     </div>
-                                     <div class="form-group col-md-4">
+                                    <div class="form-group col-md-4">
                                         <label>Bairro:</label>
 
                                         <select name="bairro_id" class="form-control select2" >
-                                            <?php 
-                                            while ($bairros = $result3->fetch_assoc()){
-                                            ?>
-                                            <option  value="<?= $bairros['id'] ?>"><?= $bairros['nome'] ?></option>
                                             <?php
+                                            while ($bairros = $result3->fetch_assoc()) {
+                                                ?>
+                                                <option  value="<?= $bairros['id'] ?>"><?= $bairros['nome'] ?></option>
+                                                <?php
                                             }
                                             ?>
                                         </select>
@@ -86,11 +90,14 @@ $result3 = $mysqli->query($sql3);
                                         <label>Destaque?</label>
                                         <input type="checkbox" name='destaque' value="1" >
                                     </div>
-                                    <div class="form-group col-md-12">
-                                        <label>Imagem</label>
-                                        <input type="file" name='imagem' id='imagem' >
-                                    </div>
-
+                                    <?php
+                                    for ($x = 1; $x < 7; $x++) {
+                                        ?>
+                                        <div class="form-group col-md-12">
+                                            <label>Imagem <?= $x?></label>
+                                            <input type="file" name='imagem<?=$x?>' id='imagem' >
+                                        </div>
+                                    <?php } ?>
                                     <div class="form-group col-md-12">
 
                                         <input type="submit" value="Adicionar" name="submit" class="btn btn-twitter">

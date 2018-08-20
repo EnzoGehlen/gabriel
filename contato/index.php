@@ -1,6 +1,7 @@
 <?php
 $a = rand(0, 19);
 $b = rand(0, 19);
+
 ?>
 <section class="section-padding wow fadeInUp delay-05s" id="contact">
     <div class="container">
@@ -21,30 +22,30 @@ $b = rand(0, 19);
                             <input type="hidden" name='action' value='adiciona'>
                             <input type="hidden" name='tabela' value='contato'>
 
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <input type="text" name="nome" class="form-control" id="name" placeholder="Nome *" required />
 
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Email *" required />
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <input type="text" class="form-control" name="titulo" id="subject" placeholder="Assunto *" required />
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group col-md-12">
                                 <textarea class="form-control" name="mensagem"  required placeholder="Mensagem"></textarea>
 
                             </div>
-                            <div class="form-group col-md-8">
+                            <div class="form-group col-md-12">
                                 <input type="text" class="form-control" name="op" disabled value="<?= '' . $a . ' + ' . $b . '' ?>">
                                 <input type='hidden' class="form-control" name="op" value="<?= '' . $a . ' + ' . $b . '' ?>">
                                 <input type="number" class="form-control" name="result" placeholder="Resultado da soma:">
                             </div>
-                            
+
                             <div class='form-group col-md-12'> <input type="submit" class="btn btn-send"></div>
 
                         </form>
@@ -84,33 +85,30 @@ $b = rand(0, 19);
 
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" name="cpf" id="email" placeholder="CPF *" required />
+                            <input type="text" class="form-control" name="telefone" id="email" placeholder="Telefone *" required />
 
                         </div>
-                        <div class="form-group col-md-4">
-                            <input type="text" class="form-control" name="cidade_pessoa" id="email" placeholder="Cidade *" required />
-
-                        </div>
-                        <div class="form-group col-md-4">
-                            <input type="text" class="form-control" name="estado_pessoa" id="email" placeholder="Estado *" required />
-
-                        </div>
-                        <div class="form-group col-md-4">
-                            <input type="text" class="form-control" name="cep_pessoa" id="email" placeholder="CEP"  />
-
-                        </div>
-                        <div class="form-group col-md-5">
+                        <div class="form-group col-md-12">
                             <input type="email" class="form-control" name="email" id="email" placeholder="Email *" required />
 
                         </div>
-                        <div class="form-group col-md-4">
-                            <input type="text" class="form-control" name="telefone" id="email" placeholder="Telefone (Fixo / Whatsapp) *" required />
-
-                        </div>
-                        <div class="form-group col-md-3">
-                            <input type="text" class="form-control" name="telefone2" id="email" placeholder="Telefone 2 (Fixo / Whatsapp)"  />
-
-                        </div>
+                        <!--                        <div class="form-group col-md-4">
+                                                    <input type="text" class="form-control" name="estado_pessoa" id="email" placeholder="Estado *" required />
+                        
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <input type="text" class="form-control" name="cep_pessoa" id="email" placeholder="CEP"  />
+                        
+                                                </div>
+                                               
+                                                <div class="form-group col-md-4">
+                                                    <input type="text" class="form-control" name="telefone" id="email" placeholder="Telefone (Fixo / Whatsapp) *" required />
+                        
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <input type="text" class="form-control" name="telefone2" id="email" placeholder="Telefone 2 (Fixo / Whatsapp)"  />
+                        
+                                                </div>-->
                         <div class="col-md-12">  
                             <h3 class="cont-title"><font style="color: black; font-size: 25px">Dados do imóvel</font></h3>
                         </div>
@@ -139,7 +137,7 @@ $b = rand(0, 19);
 
                         </div>
                         <div class="form-group col-md-12">
-                            <textarea class="form-control" name="descricao"  required placeholder="Descrição"></textarea>
+                            <textarea class="form-control" name="descricao"  required placeholder="Descrição (tipo de imóvel)"></textarea>
 
                         </div>
                         <div class="col-md-12">  
@@ -178,6 +176,7 @@ $b = rand(0, 19);
     </div>
 </section>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="../admin/bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
 <script>
     $("#showr").click(function () {
         $("#contato").first().show("slow", function showNext() {
@@ -187,4 +186,72 @@ $b = rand(0, 19);
 
 
 </script>
+<script>
+    $("#nav-fotos-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-fotos-tab").addClass('active');
+    });
+    $("#nav-caracteristicas-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-caracteristicas-tab").addClass('active');
+    });
+    $("#nav-infra-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-infra-tab").addClass('active');
+    });
+    $("#nav-localizacao-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-localizacao-tab").addClass('active');
+    });
+</script>
+<script>
+
+    $(".minu").click(function () {
+        $("#movi").hide();
+    });
+
+
+
+    $(".movi").each(function () {
+
+        $(this).click(function () {
+
+            $("#movi").hide();
+            var id = this.id;
+            $("#movi").show("slow", function showNext() {
+                $(this).next("#movi").show("slow", showNext);
+            });
+            buscar(id);
+
+
+        });
+
+
+    });
+
+    function buscar(id) {
+        console.log(id);
+        var page = "ajax.php";
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'html',
+            url: page,
+            data: {id: id},
+            success: function (msg) {
+                $("#movi").html(msg);
+            }
+
+
+        });
+    }
+
+
+
+
+
+</script>
+
+
+
 <!---->

@@ -66,42 +66,51 @@ function adiciona($tabela = null) {
         case 'imoveis':
             $titulo = $_POST['titulo'];
             $descricao = $_POST['descricao'];
+            $infra = $_POST['infra'];
             $latitude = $_POST['latitude'];
             $longitude = $_POST['longitude'];
             $bairro_id = $_POST['bairro_id'];
             $categoria_id = $_POST['categoria_id'];
-            $destaque = $_POST['destaque'];
-            $imagem = basename($_FILES["imagem"]["name"]);
+            @$destaque = $_POST['destaque'];
 
 
-            $target_dir = "../images/imoveis/";
-            $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
+            $target_dir = "../images/imoveis/$titulo";
+
+
             $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
 // Check if image file is a actual image or fake image
-            if (isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["imagem"]["tmp_name"]);
-                if ($check !== false) {
-                    echo "File is an image - " . $check["mime"] . ".";
-                    $uploadOk = 1;
-                } else {
-                    echo "File is not an image.";
-                    $uploadOk = 0;
+            for ($x = 1; $x < 7; $x++) {
+                @$imagem{$x} = basename($_FILES["imagem$x"]["name"]);
+                @$target_file{$x} = $target_dir . basename($_FILES["imagem$x"]["name"]);
+                $imageFileType1 = strtolower(pathinfo($target_file{$x}, PATHINFO_EXTENSION));
+                echo "<br>AAAAAAAAAAAAAAAAAAAAA <br> " . $_FILES["imagem$x"]["name"] . "<br>";
+                if (isset($_POST["submit"])) {
+                    $check = getimagesize($_FILES["imagem$x"]["tmp_name"]);
+                    if ($check !== false) {
+                        echo "File is an image - " . $check["mime"] . ".";
+                        $uploadOk = 1;
+                    } else {
+                        echo "File is not an image.";
+                        $uploadOk = 0;
+                    }
                 }
-            }
-            if ($uploadOk == 0) {
-                echo "Sorry, your file was not uploaded.";
+                if ($uploadOk == 0) {
+                    echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
-            } else {
-                if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
-                    echo "The file " . basename($_FILES["imagem"]["name"]) . " has been uploaded.<br>";
                 } else {
-                    echo "Sorry, there was an error uploading your file.<br>";
+                    if (move_uploaded_file($_FILES["imagem$x"]["tmp_name"], $target_file{$x})) {
+                        echo "The file " . basename($_FILES["imagem{$x}"]["name"]) . " has been uploaded.<br>";
+                    } else {
+                        echo "Sorry, there was an error uploading your file.<br>";
+                    }
                 }
+                $imagem{$x} = $_FILES["imagem$x"]["name"];
             }
 
 
-            $sql = ("INSERT INTO imoveis (titulo, descricao, latitude, longitude,  imagem, destaque, bairro_id, categoria_id) VALUES ('$titulo', '$descricao', '$latitude','$longitude', '$imagem', '$destaque', '$bairro_id', '$categoria_id')");
+
+            $sql = ("INSERT INTO imoveis (titulo, descricao, infraestrutura, latitude, longitude,  imagem1, imagem2, imagem3, imagem4, imagem5, imagem6, destaque, bairro_id, categoria_id) VALUES ('$titulo', '$descricao','$infra', '$latitude','$longitude', '$imagem[1]', '$imagem[2]', '$imagem[3]', '$imagem[4]', '$imagem[5]', '$imagem[6]', '$destaque', '$bairro_id', '$categoria_id')");
 
             break;
 
@@ -113,14 +122,14 @@ function adiciona($tabela = null) {
             $op = $_POST['op'];
             $result = $_POST['result'];
             $op = explode('+', $op);
-            
+
 
             if (!($result == ($op[1] + $op[0]))) {
                 echo "<script> alert('Soma incorreta!')</script> ";
                 echo "<script>window.location.replace('../index.php');</script>";
                 exit;
             }
-            
+
 
 
 
@@ -172,13 +181,13 @@ function adiciona($tabela = null) {
 
         case 'vendas':
             $nome = $_POST['nome'];
-            $cpf = $_POST['cpf'];
-            $cidade_pessoa = $_POST['cidade_pessoa'];
+            @$cpf = $_POST['cpf'];
+            @$cidade_pessoa = $_POST['cidade_pessoa'];
             $email = $_POST['email'];
-            $estado_pessoa = $_POST['estado_pessoa'];
-            $cep_pessoa = $_POST['cep_pessoa'];
+            @$estado_pessoa = $_POST['estado_pessoa'];
+            @$cep_pessoa = $_POST['cep_pessoa'];
             $telefone = $_POST['telefone'];
-            $telefone2 = $_POST['telefone2'];
+            @$telefone2 = $_POST['telefone2'];
             $endereco_imovel = $_POST['endereco_imovel'];
             $numero = $_POST['numero'];
             $bairro_imovel = $_POST['bairro_imovel'];
@@ -189,11 +198,11 @@ function adiciona($tabela = null) {
             $img1 = basename($_FILES["img1"]['name']);
             @$img2 = basename($_FILES["img2"]['name']);
             @$img3 = basename($_FILES["img3"]['name']);
-            
+
             $op = $_POST['op'];
             $result = $_POST['result'];
             $op = explode('+', $op);
-            
+
 
             if (!($result == ($op[1] + $op[0]))) {
                 echo "<script> alert('Soma incorreta!')</script> ";
@@ -204,7 +213,7 @@ function adiciona($tabela = null) {
 
 
 
-            $target_dir = "../images/contato_venda/";
+            $target_dir = "../images/contato_venda/$nome";
             $target_file1 = $target_dir . basename($_FILES["img1"]['name']);
             @$target_file2 = $target_dir . basename($_FILES["img2"]['name']);
             @$target_file3 = $target_dir . basename($_FILES["img3"]['name']);
@@ -279,43 +288,46 @@ function edita($tabela = null) {
             $id = $_POST['id'];
             $titulo = $_POST['titulo'];
             $descricao = $_POST['descricao'];
+            $infra = $_POST['infra'];
             $latitude = $_POST['latitude'];
             $longitude = $_POST['longitude'];
             $bairro_id = $_POST['bairro_id'];
             $categoria_id = $_POST['categoria_id'];
             $destaque = $_POST['destaque'];
-            $imagem = basename($_FILES["imagem"]["name"]);
-            if (empty($imagem)) {
-                $imagem = $_POST['imagemm'];
-            }
-
             $target_dir = "../images/imoveis/";
-            $target_file = $target_dir . basename($_FILES["imagem"]["name"]);
-            $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-            if (isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["imagem"]["tmp_name"]);
-                if ($check !== false) {
-                    echo "File is an image - " . $check["mime"] . ".";
-                    $uploadOk = 1;
-                } else {
-                    echo "File is not an image.";
-                    $uploadOk = 0;
+            for ($x = 1; $x < 7; $x++) {
+                @$imagem{$x} = basename($_FILES["imagem$x"]["name"]);
+                if (empty($imagem{$x})) {
+                    $imagem{$x} = $_POST["imagemm$x"];
                 }
-            }
-            if ($uploadOk == 0) {
-                echo "Sorry, your file was not uploaded.";
+                echo "<br> AAAAAAAAAAA <br> $imagem{$x} <br>";
+                @$target_file{$x} = $target_dir . basename($_FILES["imagem$x"]["name"]);
+                $imageFileType1 = strtolower(pathinfo($target_file{$x}, PATHINFO_EXTENSION));
+                echo "<br>AAAAAAAAAAAAAAAAAAAAA <br> " . $_FILES["imagem$x"]["name"] . "<br>";
+                if (isset($_POST["submit"])) {
+                    $check = getimagesize($_FILES["imagem$x"]["tmp_name"]);
+                    if ($check !== false) {
+                        echo "File is an image - " . $check["mime"] . ".";
+                        $uploadOk = 1;
+                    } else {
+                        echo "File is not an image.";
+                        $uploadOk = 0;
+                    }
+                }
+                if ($uploadOk == 0) {
+                    echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
-            } else {
-                if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $target_file)) {
-                    echo "The file " . basename($_FILES["imagem"]["name"]) . " has been uploaded.<br>";
                 } else {
-                    echo "Sorry, there was an error uploading your file.<br>";
+                    if (move_uploaded_file($_FILES["imagem$x"]["tmp_name"], $target_file{$x})) {
+                        echo "The file " . basename($_FILES["imagem{$x}"]["name"]) . " has been uploaded.<br>";
+                    } else {
+                        echo "Sorry, there was an error uploading your file.<br>";
+                    }
                 }
+                
             }
 
-            $sql = ("UPDATE imoveis SET titulo = '$titulo',  descricao = '$descricao', latitude = '$latitude', longitude = '$longitude', bairro_id = '$bairro_id',  categoria_id = '$categoria_id', destaque = '$destaque',  imagem = '$imagem' WHERE id = $id");
+            $sql = ("UPDATE imoveis SET titulo = '$titulo',  descricao = '$descricao', infraestrutura = '$infra', latitude = '$latitude', longitude = '$longitude', bairro_id = '$bairro_id',  categoria_id = '$categoria_id', destaque = '$destaque',  imagem1 = '$imagem[1]', imagem2 = '$imagem[2]', imagem3 = '$imagem[3]', imagem4 = '$imagem[4]', imagem5 = '$imagem[5]', imagem6 = '$imagem[6]' WHERE id = $id");
             break;
 
 

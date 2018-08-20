@@ -64,7 +64,7 @@ $result = $mysqli->query($sql);
 
                                             <td><?= $nome_bairro['nome'] ?></td>
 
-                                            <td><img class='enzo' src="../images/imoveis/<?= $dados['imagem'] ?>" alt=""/></td>
+                                            <td><img class='enzo' src="../images/imoveis/<?= $dados['imagem1'] ?>" alt=""/></td>
 
 
 
