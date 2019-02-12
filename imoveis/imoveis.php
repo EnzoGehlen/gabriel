@@ -1,30 +1,55 @@
 
+<style type="text/css">
+    a.minu{
+        background-color: #187891;
+        margin: 10px;
+        border-radius: 4px;
+        border: 2px solid #2B4A7A;
+        color: red;
+        height: 30px;
+    }
 
+    .minu:hover{
+        background-color: #2B4A7A;
+        margin: 10px;
+        border-radius: 4px;
+        border: 2px solid #187891;
+        color: #FFF;
+    }
+
+    #feature{
+        background-color: #EDEDED;
+    }
+
+    .categorias{
+        background-color: #DCDCDC;
+    }
+</style>
 <?php
 include('../conexao.php');
 $imoveis = "SELECT * FROM imoveis";
-$categorias = "SELECT * FROM categorias";
+$categorias = "SELECT * FROM categorias ORDER BY nome ASC";
 $result = $mysqli->query($imoveis);
 $result2 = $mysqli->query($categorias);
 ?>
 
-
+https://www.zapimoveis.com.br/venda/
 <?php
 ?>
 
 <section id="feature" class="section-padding">
     <div class="container">
-        <div class="row">
-            <div class="span3">
+        <div class="row categorias">
+            <div class="col-md-12 ">
                 <!-- Filter -->
                 <nav id="options" class="work-nav">
                     <ul id="filters" class="option-set" data-option-key="filter">
 
-                        <li><a href="#filter" data-option-value="*"  class=" minu selected">Todas as categorias</a></li>
+                        <li><a href="#filter" data-option-value="*" style="color: #FFF" class=" minu selected text-center ">Todas as categorias</a></li>
                         <?php
                         while ($dados = $result2->fetch_assoc()) {
                             ?>
-                            <li><a href="#filter" class="minu" data-option-value=".<?= $dados['id'] ?>"><?= $dados['nome'] ?></a></li>
+                            <li><a href="#filter" class="minu col-md-3 text-center" style="color: #FFF" data-option-value=".<?= $dados['id'] ?>"><?= $dados['nome'] ?></a></li>
 
                             <?php
                         }

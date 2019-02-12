@@ -135,7 +135,7 @@ $result2 = $mysqli->query($sql2);
             </div>
         </div>
     </section>-->
-<button id='oi'>me clique</button>
+
     <?php
     include('../imoveis/index.php');
 
@@ -178,31 +178,8 @@ $result2 = $mysqli->query($sql2);
     <script src="../js/jquery.prettyPhoto.js" type="text/javascript"></script>
     <script src="../js/main.js" type="text/javascript"></script>
     <script src="../js/wow.min.js" type="text/javascript"></script>
-    <script>
-        $("#nav-fotos-tab").click(function () {
-            $(".nav-item").removeClass('active');
-            $("#nav-fotos-tab").addClass('active');
-        });
-        $("#nav-caracteristicas-tab").click(function () {
-            console.log('oi');
-            $(".nav-item").removeClass('active');
-            $("#nav-caracteristicas-tab").addClass('active');
-
-        });
-        $("#nav-infra-tab").click(function () {
-            $(".nav-item").removeClass('active');
-            $("#nav-infra-tab").addClass('active');
-        });
-        $("#nav-localizacao-tab").click(function () {
-            $(".nav-item").removeClass('active');
-            $("#nav-localizacao-tab").addClass('active');
-        });
-    </script>
-    <script type="text/javascript">
-    $('#nav-caracteristicas-tab').click(function (){
-        console.log('oi');
-    });
-</script>
+   
+   
     <script>
 
         $(document).ready(function () {
