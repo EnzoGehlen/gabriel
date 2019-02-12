@@ -48,7 +48,7 @@ $result2 = $mysqli->query($categorias);
                                 ?>
                                 <li class="item-thumbs span3 <?= $bairro['id'] ?>"  >
                                     <input type="hidden" id="idImovi" value="<?= $dados2['id'] ?>">
-                                    <a  class="hover-wrap movi" id="<?= $dados2['id'] ?>"  >
+                                    <a href="#fotos" class="hover-wrap movi" id="<?= $dados2['id'] ?>"  >
                                         <span  class="overlay-img"></span>
                                         <span  class="overlay-img-thumb fa fa-plus"> </span>
                                     </a>
@@ -62,12 +62,15 @@ $result2 = $mysqli->query($categorias);
 
 
                         </ul>
+                        
                     </section>
+                    <div style="height: 50px;" id="fotos"></div>
                     <div id="movi" class="contact-info col-md-12" style="background-color: rgba(28, 26, 26, 0.1); border-radius: 10px; display: block; ">
                       
                     </div>
 
                 </div>
+                
             </div>
         </div>
         <!-- End Portfolio Projects -->

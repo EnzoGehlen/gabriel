@@ -59,8 +59,8 @@ $b = rand(0, 19);
                 <div class="col-md-4 col-sm-6">
                     <h3 class="cont-title">Onde estamos</h3>
                     <div class="location-info">
-                        <p class="white"><span aria-hidden="true" class="fa fa-map-marker"></span>Rua Borges de Medeiros, 86 - Três Passos</p>
-                        <p class="white"><span aria-hidden="true" class="fa fa-phone"></span>(55) 99623-7090</p>
+                        <p class="white"><span aria-hidden="true" class="fa fa-map-marker"></span>Av. Santos Dumont, 559, Centro, Três Passos</p>
+                        <p class="white"><span aria-hidden="true" class="fa fa-phone"></span><a href="tel:55996237090">(55) 9 9623-7090</a></p>
                         <p class="white"><span aria-hidden="true" class="fa fa-envelope"></span>Email: <a href="mailto:gabrielchaves@creci.org.br" class="link-dec">gabrielchaves@creci.org.br</a></p>
                         <p class="white"><span aria-hidden="true" class="fa fa-money"></span><button id="showr" class="btn">Quero vender meu imóvel</button></p>
                     </div>
@@ -113,7 +113,7 @@ $b = rand(0, 19);
                             <h3 class="cont-title"><font style="color: black; font-size: 25px">Dados do imóvel</font></h3>
                         </div>
                         <div class="form-group col-md-9">
-                            <input type="text" name="endereco_imovel" class="form-control" id="name" placeholder="Endereço *" required />
+                            <input type="text" name="endereco_imovel" class="form-control" id="name" placeholder="Endereço "  />
 
                         </div>
                         <div class="form-group col-md-3">
@@ -121,15 +121,15 @@ $b = rand(0, 19);
 
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" name="bairro_imovel" id="email" placeholder="Bairro *" required />
+                            <input type="text" class="form-control" name="bairro_imovel" id="email" placeholder="Bairro "  />
 
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" name="cidade_imovel" id="email" placeholder="Cidade *" required />
+                            <input type="text" class="form-control" name="cidade_imovel" id="email" placeholder="Cidade "  />
 
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" class="form-control" name="estado_imovel" id="email" placeholder="Estado *" required />
+                            <input type="text" class="form-control" name="estado_imovel" id="email" placeholder="Estado "  />
 
                         </div>
                         <div class="form-group col-md-3">
@@ -137,14 +137,14 @@ $b = rand(0, 19);
 
                         </div>
                         <div class="form-group col-md-12">
-                            <textarea class="form-control" name="descricao"  required placeholder="Descrição (tipo de imóvel)"></textarea>
+                            <textarea class="form-control" name="descricao"  placeholder="Descrição (tipo de imóvel)"></textarea>
 
                         </div>
                         <div class="col-md-12">  
                             <h4 class="cont-title"><font style="color: black; font-size: 18px">Insira até 3 fotos:</font></h4>
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="file" class="form-control" name="img1" required  />
+                            <input type="file" class="form-control" name="img1"   />
 
                         </div>
                         <div class="form-group col-md-3">

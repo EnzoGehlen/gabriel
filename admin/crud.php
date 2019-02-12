@@ -74,7 +74,7 @@ function adiciona($tabela = null) {
             @$destaque = $_POST['destaque'];
 
 
-            $target_dir = "../images/imoveis/$titulo";
+            $target_dir = "../images/imoveis/";
 
 
             $uploadOk = 1;
@@ -82,8 +82,13 @@ function adiciona($tabela = null) {
 // Check if image file is a actual image or fake image
             for ($x = 1; $x < 7; $x++) {
                 @$imagem{$x} = basename($_FILES["imagem$x"]["name"]);
-                @$target_file{$x} = $target_dir . basename($_FILES["imagem$x"]["name"]);
+
                 $imageFileType1 = strtolower(pathinfo($target_file{$x}, PATHINFO_EXTENSION));
+                $name = rand();
+                $arquivo = explode(".", $imagem{$x});
+                $imagem{$x} = $name . "." . $arquivo[1];
+                $_FILES["imagem$x"]["name"] = $imagem{$x};
+                @$target_file{$x} = $target_dir . basename($_FILES["imagem$x"]["name"]);
                 echo "<br>AAAAAAAAAAAAAAAAAAAAA <br> " . $_FILES["imagem$x"]["name"] . "<br>";
                 if (isset($_POST["submit"])) {
                     $check = getimagesize($_FILES["imagem$x"]["tmp_name"]);
@@ -299,32 +304,42 @@ function edita($tabela = null) {
                 @$imagem{$x} = basename($_FILES["imagem$x"]["name"]);
                 if (empty($imagem{$x})) {
                     $imagem{$x} = $_POST["imagemm$x"];
-                }
-                echo "<br> AAAAAAAAAAA <br> $imagem{$x} <br>";
-                @$target_file{$x} = $target_dir . basename($_FILES["imagem$x"]["name"]);
-                $imageFileType1 = strtolower(pathinfo($target_file{$x}, PATHINFO_EXTENSION));
-                echo "<br>AAAAAAAAAAAAAAAAAAAAA <br> " . $_FILES["imagem$x"]["name"] . "<br>";
-                if (isset($_POST["submit"])) {
-                    $check = getimagesize($_FILES["imagem$x"]["tmp_name"]);
-                    if ($check !== false) {
-                        echo "File is an image - " . $check["mime"] . ".";
-                        $uploadOk = 1;
-                    } else {
-                        echo "File is not an image.";
-                        $uploadOk = 0;
-                    }
-                }
-                if ($uploadOk == 0) {
-                    echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
+                    $name = $imagem{$x};
+                    //$name = explode('.',$name, 0);
                 } else {
-                    if (move_uploaded_file($_FILES["imagem$x"]["tmp_name"], $target_file{$x})) {
-                        echo "The file " . basename($_FILES["imagem{$x}"]["name"]) . " has been uploaded.<br>";
+                    $name = rand();
+
+
+                    $arquivo = explode(".", $imagem{$x});
+                    $imagem{$x} = $name . "." . $arquivo[1];
+                    $_FILES["imagem$x"]["name"] = $imagem{$x};
+
+                    echo "<br> AAAAAAAAAAA <br> $imagem{$x} <br>";
+                    @$target_file{$x} = $target_dir . basename($_FILES["imagem$x"]["name"]);
+                    //echo $target_file{$x};exit;
+                    $imageFileType1 = strtolower(pathinfo($target_file{$x}, PATHINFO_EXTENSION));
+                    echo "<br>AAAAAAAAAAAAAAAAAAAAA <br> " . $_FILES["imagem$x"]["name"] . "<br>";
+                    if (isset($_POST["submit"])) {
+                        $check = getimagesize($_FILES["imagem$x"]["tmp_name"]);
+                        if ($check !== false) {
+                            echo "File is an image - " . $check["mime"] . ".";
+                            $uploadOk = 1;
+                        } else {
+                            echo "File is not an image.";
+                            $uploadOk = 0;
+                        }
+                    }
+                    if ($uploadOk == 0) {
+                        echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
                     } else {
-                        echo "Sorry, there was an error uploading your file.<br>";
+                        if (move_uploaded_file($_FILES["imagem$x"]["tmp_name"], $target_file{$x})) {
+                            echo "The file " . basename($_FILES["imagem{$x}"]["name"]) . " has been uploaded.<br>";
+                        } else {
+                            echo "Sorry, there was an error uploading your file.<br>";
+                        }
                     }
                 }
-                
             }
 
             $sql = ("UPDATE imoveis SET titulo = '$titulo',  descricao = '$descricao', infraestrutura = '$infra', latitude = '$latitude', longitude = '$longitude', bairro_id = '$bairro_id',  categoria_id = '$categoria_id', destaque = '$destaque',  imagem1 = '$imagem[1]', imagem2 = '$imagem[2]', imagem3 = '$imagem[3]', imagem4 = '$imagem[4]', imagem5 = '$imagem[5]', imagem6 = '$imagem[6]' WHERE id = $id");

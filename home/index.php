@@ -16,7 +16,7 @@ $result2 = $mysqli->query($sql2);
               type="image/png" 
               href="../images/logo.png" />
 
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300|Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
@@ -25,7 +25,7 @@ $result2 = $mysqli->query($sql2);
         <link href="../css/owl.carousel.css" rel="stylesheet" type="text/css"/>
         <link href="../css/owl.transitions.css" rel="stylesheet" type="text/css"/>
         <link href="../css/main.css" rel="stylesheet" type="text/css"/>
-        
+
 
     </head>
 
@@ -74,7 +74,7 @@ $result2 = $mysqli->query($sql2);
                                     <div class="carousel-content">
                                         <h2><?= $dados['titulo'] ?></h2>
 
-                                        <a class="btn btn-primary btn-lg" href="#">Saiba mais</a>
+                                        <!--<a class="btn btn-primary btn-lg" href="#">Saiba mais</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -90,17 +90,17 @@ $result2 = $mysqli->query($sql2);
 
 
 
-
-    <section id="cta-1">
-        <div class="container">
-            <div class="row">
-                <div class="cta-info text-center">
-                    <h3><span class="dec-tec">“</span>Corretor é sinônimo de negócio teste 2 seguro e tranquilo<span class="dec-tec">”</span> -Gabriel Chaves</h3>
+    <!--
+        <section id="cta-1">
+            <div class="container">
+                <div class="row">
+                    <div class="cta-info text-center">
+                        <h3><span class="dec-tec">“</span>Corretor é sinônimo de negócio teste 2 seguro e tranquilo<span class="dec-tec">”</span> -Gabriel Chaves</h3>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!---->
+        </section>
+    -->
     <!---->
 <!--    <section id="feature" class="section-padding">
         <div class="container">
@@ -118,15 +118,15 @@ $result2 = $mysqli->query($sql2);
         ?>
 
 
-                            <div class="col-md-6 wow fadeInRight delay-02s">
-                                <div class="icon">
-                                    <i class="<?= $dados2['nome'] ?>"></i>
-                                </div>
-                                <div class="icon-text">
-                                    <h3 class="txt-tl"><?= $dados2['titulo'] ?></h3>
-                                    <p class="txt-para"><?= $dados2['descricao'] ?></p>
-                                </div>
-                            </div>
+                                    <div class="col-md-6 wow fadeInRight delay-02s">
+                                        <div class="icon">
+                                            <i class="<?= $dados2['nome'] ?>"></i>
+                                        </div>
+                                        <div class="icon-text">
+                                            <h3 class="txt-tl"><?= $dados2['titulo'] ?></h3>
+                                            <p class="txt-para"><?= $dados2['descricao'] ?></p>
+                                        </div>
+                                    </div>
         <?php
     }
     ?>
@@ -148,7 +148,7 @@ $result2 = $mysqli->query($sql2);
         <div class="container">
             <div class="row">
                 <div class="col-sm-7 footer-copyright">
-                    © Gabriel Chaves Imóveis - Todos os direitos reservados
+                    © Corretor Gabriel Chaves, CRECI nº52.472 F - Todos os direitos reservados
                     <div class="credits">
 
                         Desenvolvido por <a href="mailto:enzo.gehlen@hotmail.com">Enzo Gehlen</a>
@@ -179,6 +179,32 @@ $result2 = $mysqli->query($sql2);
     <script src="../js/main.js" type="text/javascript"></script>
     <script src="../js/wow.min.js" type="text/javascript"></script>
 
+    <script>
+        $(document).ready(function () {
+            // Add smooth scrolling to all links
+            $("a").on('click', function (event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+        });
+    </script>
     <script>
 
         $(document).ready(function ($) {

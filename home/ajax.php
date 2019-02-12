@@ -35,7 +35,7 @@ $long = $dados2['longitude'];
                                     <span  class="overlay-img-thumb fa fa-plus"> </span>
                                 </a>
 
-                                <img class="img img-responsive" style='max-height: 100px; object-fit: cover;' src="../images/imoveis/<?= $dados2['imagem' . $x . ''] ?>" alt="">
+                                <img class="img img-responsive" style='max-height: 100px; object-fit: cover;' onerror="this.style.display='none'" src="../images/imoveis/<?= $dados2['imagem' . $x . ''] ?>" alt="">
                             </li>
                             <?php
                         }
@@ -86,4 +86,22 @@ $long = $dados2['longitude'];
             map: map
         });
     }
+</script>
+<script>
+    $("#nav-fotos-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-fotos-tab").addClass('active');
+    });
+    $("#nav-caracteristicas-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-caracteristicas-tab").addClass('active');
+    });
+    $("#nav-infra-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-infra-tab").addClass('active');
+    });
+    $("#nav-localizacao-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-localizacao-tab").addClass('active');
+    });
 </script>

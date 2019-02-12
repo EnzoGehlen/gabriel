@@ -4,7 +4,7 @@ include('cabecalho.php');
 include('menu.php');
 include('../conexao.php');
 
-$sql = "SELECT * FROM imoveis";
+$sql = "SELECT * FROM imoveis ORDER BY id DESC";
 $result = $mysqli->query($sql);
 ?>
 
@@ -42,6 +42,7 @@ $result = $mysqli->query($sql);
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
+                                        <th>Código</th>
                                         <th>Título</th>
                                         <th>Descrição</th>
                                         <th>Categoria</th>
@@ -58,6 +59,7 @@ $result = $mysqli->query($sql);
                                         $nome_bairro = $result2->fetch_assoc();
                                         ?>
                                         <tr>
+                                             <td><?= $dados['id'] ?></td>       
                                             <td><?= $dados['titulo'] ?></td>                                       
 
                                              <td>  <?= substr($dados['descricao'], 0, 40); ?> ... </td>
