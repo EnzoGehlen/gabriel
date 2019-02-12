@@ -9,84 +9,84 @@ $result2 = $mysqli->query($sql2);
 
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gabriel Chaves Imóveis</title>
-        <link rel="icon" 
-              type="image/png" 
-              href="../images/logo.png" />
+<head>
+    <meta charset="UTF-8">
+    <title>Gabriel Chaves Imóveis</title>
+    <link rel="icon" 
+    type="image/png" 
+    href="../images/logo.png" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300|Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/animate.css">
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
-        <link href="../css/owl.carousel.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/owl.transitions.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/main.css" rel="stylesheet" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300|Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/animate.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="../css/owl.carousel.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/owl.transitions.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/main.css" rel="stylesheet" type="text/css"/>
 
 
-    </head>
+</head>
 
-    <body>
-        <!--header-->
-        <header class="main-header" >
-            <div class="bg-color">
+<body>
+    <!--header-->
+    <header class="main-header" >
+        <div class="bg-color">
 
-                <nav class="nav navbar-default navbar-fixed-top">
-                    <div class="container">
-                        <div class="col-md-12">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
-                                    <span class="fa fa-bars"></span>
-                                </button>
+            <nav class="nav navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="fa fa-bars"></span>
+                            </button>
 
-                            </div>
-                            <div class="collapse navbar-collapse navbar-right" id="mynavbar">
-                                <ul class="nav navbar-nav">
-                                    <li class="active"><a href="../">Início</a></li>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-right" id="mynavbar">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="../">Início</a></li>
 
-                                    <li><a href="#contact">Contato</a></li>
-                                </ul>
-                            </div>
+                                <li><a href="#contact">Contato</a></li>
+                            </ul>
                         </div>
                     </div>
-                </nav>
+                </div>
+            </nav>
 
-                <!--/ nav-->
+            <!--/ nav-->
 
-            </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <section id="main-slider">
-        <div class="owl-carousel">
-            <?php
-            while ($dados = $result->fetch_assoc()) {
-                ?>
-                <div class="item" style="background-image: url(../images/imoveis/<?= $dados['imagem1'] ?>);
-                     opacity: 1; ">
-                    <div class="slider-inner" style="background: rgba(0,0,0,0.5);">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-12 text-center">
-                                    <div class="carousel-content">
-                                        <h2><?= $dados['titulo'] ?></h2>
+<section id="main-slider">
+    <div class="owl-carousel">
+        <?php
+        while ($dados = $result->fetch_assoc()) {
+            ?>
+            <div class="item" style="background-image: url(../images/imoveis/<?= $dados['imagem1'] ?>);
+            opacity: 1; ">
+            <div class="slider-inner" style="background: rgba(0,0,0,0.5);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div class="carousel-content">
+                                <h2><?= $dados['titulo'] ?></h2>
 
-                                        <!--<a class="btn btn-primary btn-lg" href="#">Saiba mais</a> -->
-                                    </div>
-                                </div>
+                                <!--<a class="btn btn-primary btn-lg" href="#">Saiba mais</a> -->
                             </div>
                         </div>
                     </div>
-                </div><!--/.item-->
-                <?php
-            }
-            ?>
+                </div>
+            </div>
+        </div><!--/.item-->
+        <?php
+    }
+    ?>
 
-        </div><!--/.owl-carousel-->
-    </section><!--/#main-slider-->
+</div><!--/.owl-carousel-->
+</section><!--/#main-slider-->
 
 
 
@@ -135,7 +135,7 @@ $result2 = $mysqli->query($sql2);
             </div>
         </div>
     </section>-->
-
+<button id='oi'>me clique</button>
     <?php
     include('../imoveis/index.php');
 
@@ -178,8 +178,33 @@ $result2 = $mysqli->query($sql2);
     <script src="../js/jquery.prettyPhoto.js" type="text/javascript"></script>
     <script src="../js/main.js" type="text/javascript"></script>
     <script src="../js/wow.min.js" type="text/javascript"></script>
-
     <script>
+        $("#nav-fotos-tab").click(function () {
+            $(".nav-item").removeClass('active');
+            $("#nav-fotos-tab").addClass('active');
+        });
+        $("#nav-caracteristicas-tab").click(function () {
+            console.log('oi');
+            $(".nav-item").removeClass('active');
+            $("#nav-caracteristicas-tab").addClass('active');
+
+        });
+        $("#nav-infra-tab").click(function () {
+            $(".nav-item").removeClass('active');
+            $("#nav-infra-tab").addClass('active');
+        });
+        $("#nav-localizacao-tab").click(function () {
+            $(".nav-item").removeClass('active');
+            $("#nav-localizacao-tab").addClass('active');
+        });
+    </script>
+    <script type="text/javascript">
+    $('#nav-caracteristicas-tab').click(function (){
+        console.log('oi');
+    });
+</script>
+    <script>
+
         $(document).ready(function () {
             // Add smooth scrolling to all links
             $("a").on('click', function (event) {
@@ -220,9 +245,9 @@ $result2 = $mysqli->query($sql2);
              itemsTablet: [768,5],
              itemsTabletSmall: false,
              itemsMobile : [479,4]*/
-        })
+         })
 
-    </script>
+     </script>
 
-</body>
-</html>
+ </body>
+ </html>
