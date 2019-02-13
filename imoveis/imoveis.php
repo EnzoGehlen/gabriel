@@ -78,7 +78,7 @@ $result2 = $mysqli->query($categorias);
                                         <span  class="overlay-img-thumb fa fa-plus"> </span>
                                     </a>
 
-                                    <img class="img-responsive" style='max-height: 150px; object-fit: cover;' src="../images/imoveis/<?= $dados2['imagem1'] ?>" >
+                                    <img class="img-responsive" style='max-height: 150px; max-width: 90%; object-fit: cover;' src="../images/imoveis/<?= $dados2['imagem1'] ?>" >
                                 </li>
                                 
                                 <?php

@@ -20,11 +20,15 @@ $result2 = $mysqli->query($sql2);
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300|Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/animate.css">
+    
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link href="../css/owl.carousel.css" rel="stylesheet" type="text/css"/>
-    <link href="../css/owl.transitions.css" rel="stylesheet" type="text/css"/>
+    
     <link href="../css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+
+
+
 
 
 </head>
@@ -41,7 +45,7 @@ $result2 = $mysqli->query($sql2);
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
                                 <span class="fa fa-bars"></span>
                             </button>
-                             <a href="index.html" class="navbar-brand"> <img src="../images/logo-gabriel.png" style="max-height: 100px;" class="logo img-responsive pull-left" alt=""/></a>
+                            <a href="index.html" class="navbar-brand"> <img src="../images/logo-gabriel.png" style="max-height: 50px;" class="logo img-responsive pull-left" alt=""/></a>
                             <!-- 
                            
                             -->
@@ -49,8 +53,8 @@ $result2 = $mysqli->query($sql2);
                         
                         <div class="collapse navbar-collapse navbar-right" id="mynavbar">
                             <ul class="nav navbar-nav">
-                              
-                                
+
+
                                 <li class="active"><a href="../">Início</a></li>
 
                                 <li><a href="#contact">Contato</a></li>
@@ -65,14 +69,12 @@ $result2 = $mysqli->query($sql2);
         </div>
     </div>
 </header>
-
+<!--
 <section id="main-slider">
     <div class="owl-carousel">
-        <?php
-        while ($dados = $result->fetch_assoc()) {
-            ?>
+        
             <div class="item" style="background-image: url(../images/imoveis/<?= $dados['imagem1'] ?>);
-            opacity: 1; ">
+            opacity: 1; object-fit: cover;">
             <div class="slider-inner" style="background: rgba(0,0,0,0.5);">
                 <div class="container">
                     <div class="row">
@@ -80,19 +82,20 @@ $result2 = $mysqli->query($sql2);
                             <div class="carousel-content">
                                 <h2><?= $dados['titulo'] ?></h2>
 
-                                <!--<a class="btn btn-primary btn-lg" href="#">Saiba mais</a> -->
+                                <a class="btn btn-primary btn-lg" href="#">Saiba mais</a> 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!--/.item-->
-        <?php
-    }
-    ?>
+        </div>
+        
 
-</div><!--/.owl-carousel-->
-</section><!--/#main-slider-->
+</div>
+</section>
+-->
+
+
 
 
 
@@ -141,7 +144,19 @@ $result2 = $mysqli->query($sql2);
             </div>
         </div>
     </section>-->
+    <section>
+        <div class="your-class">
+            <?php
+            while ($dados = $result->fetch_assoc()) {
+                ?>
 
+                <img class="img img-responsive" src="../images/imoveis/<?= $dados['imagem1'] ?>">
+
+                <?php
+            }
+            ?>
+        </div>
+    </section>
     <?php
     include('../imoveis/index.php');
 
@@ -184,11 +199,27 @@ $result2 = $mysqli->query($sql2);
     <script src="../js/jquery.prettyPhoto.js" type="text/javascript"></script>
     <script src="../js/main.js" type="text/javascript"></script>
     <script src="../js/wow.min.js" type="text/javascript"></script>
-   
-   
-    <script>
 
-        $(document).ready(function () {
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function(){
+          $('.your-class').slick({
+           dots: false,
+           infinite: true,
+           speed: 500,
+           fade: false,
+           cssEase: 'linear',
+           arrows: false,
+           adaptiveHeight: true,
+           mobileFirst: true
+       });
+
+      });
+  </script>
+  <script>
+
+
+    $(document).ready(function () {
             // Add smooth scrolling to all links
             $("a").on('click', function (event) {
 

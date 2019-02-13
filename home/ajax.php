@@ -22,7 +22,7 @@ $long = $dados2['longitude'];
     </nav>
     <div class="tab-content" id="nav-tabContent" style="padding-bottom: 15px;">
 
-        <div class="tab-pane fade active in " id="nav-fotos" role="tabpanel" aria-labelledby="nav-fotos-tab" style="background-color: #FFF; border-radius: 10px; padding: 15px;   min-height: 300px;">
+        <div class="tab-pane fade active in " id="nav-fotos" role="tabpanel" aria-labelledby="nav-fotos-tab" style="background-color: #FFF; border-radius: 10px; padding: 10px; max-width: 90%;  min-height: 300px;">
             <div class="content" >
                 <ul id="thumbs" >
                     <?php
@@ -36,7 +36,7 @@ $long = $dados2['longitude'];
                                     <span  class="overlay-img-thumb fa fa-plus"> </span>
                                 </a>
 
-                                <img class="img img-responsive" style='max-height: 100px; object-fit: cover;' onerror="this.style.display='none'" src="../images/imoveis/<?= $dados2['imagem' . $x . ''] ?>" alt="">
+                                <img class="img img-responsive" style='max-height: 100px; max-widht:90%; object-fit: cover;' onerror="this.style.display='none'" src="../images/imoveis/<?= $dados2['imagem' . $x . ''] ?>" alt="">
                             </li>
                             <?php
                         }
@@ -73,29 +73,68 @@ $long = $dados2['longitude'];
 
 </section>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8iWtevhRlfBxjQ_DVFGjnZZ3ejFQXSz4&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8iWtevhRlfBxjQ_DVFGjnZZ3ejFQXSz4&callback=initMap">
 </script>
- <script>
-        $("#nav-fotos-tab").click(function () {
-            $(".nav-item").removeClass('active');
-            $("#nav-fotos-tab").addClass('active');
-        });
-        $("#nav-caracteristicas-tab").click(function () {
-            console.log('oi');
-            $(".nav-item").removeClass('active');
-            $("#nav-caracteristicas-tab").addClass('active');
+<script type="text/javascript">
+   $(document).ready(function () {
+      $('.responsive').slick({
+          dots: true,
+          infinite: false,
+          speed: 300,
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          responsive: [
+          {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+            }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+        }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+    }
+}
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+    ]
+});
+  });
+</script>
+<script>
+    $("#nav-fotos-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-fotos-tab").addClass('active');
+    });
+    $("#nav-caracteristicas-tab").click(function () {
+        console.log('oi');
+        $(".nav-item").removeClass('active');
+        $("#nav-caracteristicas-tab").addClass('active');
 
-        });
-        $("#nav-infra-tab").click(function () {
-            $(".nav-item").removeClass('active');
-            $("#nav-infra-tab").addClass('active');
-        });
-        $("#nav-localizacao-tab").click(function () {
-            $(".nav-item").removeClass('active');
-            $("#nav-localizacao-tab").addClass('active');
-        });
-    </script>
- <script type="text/javascript">
+    });
+    $("#nav-infra-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-infra-tab").addClass('active');
+    });
+    $("#nav-localizacao-tab").click(function () {
+        $(".nav-item").removeClass('active');
+        $("#nav-localizacao-tab").addClass('active');
+    });
+</script>
+<script type="text/javascript">
     $('#nav-caracteristicas-tab').click(function (){
         console.log('oi');
     });
@@ -116,4 +155,4 @@ $long = $dados2['longitude'];
         });
     }
 </script>
- <!--contact ends-->
+<!--contact ends-->
