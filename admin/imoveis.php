@@ -46,6 +46,7 @@ $result = $mysqli->query($sql);
                                         <th>Título</th>
                                         <th>Descrição</th>
                                         <th>Categoria</th>
+                                        <th>Está em destaque?</th>
                                         <th>Imagem</th>
                                         <th>Ações</th>
                                     </tr>
@@ -65,7 +66,17 @@ $result = $mysqli->query($sql);
                                              <td>  <?= substr($dados['descricao'], 0, 40); ?> ... </td>
 
                                             <td><?= $nome_bairro['nome'] ?></td>
-
+                                           <?php
+                                        if ($dados['destaque'] == 1) {
+                                            ?>
+                                           <td>Sim</td>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <td>Não</td>
+                                            <?php
+                                        }
+                                        ?>
                                             <td><img class='enzo' src="../images/imoveis/<?= $dados['imagem1'] ?>" alt=""/></td>
 
 
@@ -85,7 +96,7 @@ $result = $mysqli->query($sql);
                                                     <h4 class="modal-title">Atenção</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Você tem certeza que deseja excluir o imovel <?= $dados['titulo'] ?>?</p>
+                                                    <p>Você tem certeza que deseja excluir o imóvel <?= $dados['titulo'] ?>?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>

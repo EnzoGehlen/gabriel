@@ -41,10 +41,16 @@ $result2 = $mysqli->query($sql2);
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
                                 <span class="fa fa-bars"></span>
                             </button>
-
+                             <a href="index.html" class="navbar-brand"> <img src="../images/logo-gabriel.png" style="max-height: 100px;" class="logo img-responsive pull-left" alt=""/></a>
+                            <!-- 
+                           
+                            -->
                         </div>
+                        
                         <div class="collapse navbar-collapse navbar-right" id="mynavbar">
                             <ul class="nav navbar-nav">
+                              
+                                
                                 <li class="active"><a href="../">Início</a></li>
 
                                 <li><a href="#contact">Contato</a></li>

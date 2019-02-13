@@ -33,7 +33,7 @@ $result = $mysqli->query($imoveis);
 $result2 = $mysqli->query($categorias);
 ?>
 
-https://www.zapimoveis.com.br/venda/
+
 <?php
 ?>
 
