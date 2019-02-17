@@ -57,7 +57,46 @@ function adiciona($tabela = null) {
     switch ($tabela) {
         case 'categorias':
             $nome = $_POST['nome'];
-            $sql = ("INSERT INTO categorias (nome) VALUES ('$nome')");
+            
+            $img1 = basename($_FILES["img"]['name']);
+            @$img2 = basename($_FILES["img_hover"]['name']);
+           
+
+            $target_dir = "../images/categorias/";
+            $target_file1 = $target_dir . basename($_FILES["img"]['name']);
+            @$target_file2 = $target_dir . basename($_FILES["img_hover"]['name']);
+            $uploadOk = 1;
+            $imageFileType1 = strtolower(pathinfo($target_file1, PATHINFO_EXTENSION));
+            $imageFileType2 = strtolower(pathinfo($target_file2, PATHINFO_EXTENSION));;
+// Check if image file is a actual image or fake image
+            if (isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["img"]["tmp_name"]);
+                if ($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+            } else {
+                if ((move_uploaded_file($_FILES["img"]["tmp_name"], $target_file1))) {
+                    echo "The file " . basename($_FILES["img"]['name']) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+                if (( move_uploaded_file($_FILES["img_hover"]["tmp_name"], $target_file2))) {
+                    echo "The file " . basename($_FILES["img_hover"]['name']) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+                
+            }
+            
+            $sql = ("INSERT INTO categorias (nome, img, img_hover) VALUES ('$nome', '$img1', '$img2')");
 
             break;
 
@@ -283,7 +322,52 @@ function edita($tabela = null) {
         case 'categorias':
             $nome = $_POST['nome'];
             $id = $_POST['id'];
-            $sql = ("UPDATE categorias SET nome = '$nome' WHERE id = $id");
+            
+            $img1 = basename($_FILES["img"]['name']);
+            @$img2 = basename($_FILES["img_hover"]['name']);
+           
+            if(empty($img1)){
+                $img1 = $_POST['imgg'];
+            } else if (empty($img2)){
+                $img2 = $_POST['imgg_hover'];
+            }
+
+            $target_dir = "../images/categorias/";
+            $target_file1 = $target_dir . basename($_FILES["img"]['name']);
+            @$target_file2 = $target_dir . basename($_FILES["img_hover"]['name']);
+            $uploadOk = 1;
+            $imageFileType1 = strtolower(pathinfo($target_file1, PATHINFO_EXTENSION));
+            $imageFileType2 = strtolower(pathinfo($target_file2, PATHINFO_EXTENSION));;
+// Check if image file is a actual image or fake image
+            if (isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["img"]["tmp_name"]);
+                if ($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+            } else {
+                if ((move_uploaded_file($_FILES["img"]["tmp_name"], $target_file1))) {
+                    echo "The file " . basename($_FILES["img"]['name']) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+                if (( move_uploaded_file($_FILES["img_hover"]["tmp_name"], $target_file2))) {
+                    echo "The file " . basename($_FILES["img_hover"]['name']) . " has been uploaded.<br>";
+                } else {
+                    echo "Sorry, there was an error uploading your file.<br>";
+                }
+                
+            }
+            
+            
+            $sql = ("UPDATE categorias SET nome = '$nome', img = '$img1', img_hover = '$img2' WHERE id = $id");
             break;
 
 

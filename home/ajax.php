@@ -9,9 +9,10 @@ $lat = $dados2['latitude'];
 $long = $dados2['longitude'];
 ?>
 
+<link rel="stylesheet" href="../css/uikit.min.css" />
 
 <section>
-    
+
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active " id="nav-fotos-tab" style="color: black;" data-toggle="tab" href="#nav-fotos" role="tab" aria-controls="nav-fotos" aria-selected="true">Fotos</a>
@@ -23,21 +24,22 @@ $long = $dados2['longitude'];
     <div class="tab-content" id="nav-tabContent" style="padding-bottom: 15px;">
 
         <div class="tab-pane fade active in " id="nav-fotos" role="tabpanel" aria-labelledby="nav-fotos-tab" style="background-color: #FFF; border-radius: 10px; padding: 10px; max-width: 90%;  min-height: 300px;">
-            <div class="content" >
-                <ul id="thumbs" >
+            <div class="content col-md-12" >
+                <ul >
                     <?php
                     for ($x = 1; $x < 7; $x++) {
                         if (!empty($dados2['imagem' . $x . ''])) {
                             ?>
-                            <li class="item-thumbs span3" >
-                                <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                                <a  class="hover-wrap fancybox" data-fancybox-group="gallery" title="" href="../images/imoveis/<?= $dados2['imagem' . $x . ''] ?>">
-                                    <span  class="overlay-img"></span>
-                                    <span  class="overlay-img-thumb fa fa-plus"> </span>
-                                </a>
 
-                                <img class="img img-responsive" style='max-height: 100px; max-widht:90%; object-fit: cover;' onerror="this.style.display='none'" src="../images/imoveis/<?= $dados2['imagem' . $x . ''] ?>" alt="">
-                            </li>
+                           
+                            <div class="uk-child-width-1-3@m" class="col-md-3" uk-grid uk-lightbox="animation: slide">
+                                <div>
+                                    <a class="uk-inline" href="../images/imoveis/<?= $dados2['imagem' . $x . ''] ?>" data-caption="Caption <?= $x ?>">
+                                        <img src="../images/imoveis/<?= $dados2['imagem' . $x . ''] ?>" alt="">
+                                    </a>
+                                </div>
+                                
+                            </div>
                             <?php
                         }
                     }
@@ -73,46 +75,48 @@ $long = $dados2['longitude'];
 
 </section>
 <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8iWtevhRlfBxjQ_DVFGjnZZ3ejFQXSz4&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8iWtevhRlfBxjQ_DVFGjnZZ3ejFQXSz4&callback=initMap">
 </script>
+<script src="../js/uikit.min.js"></script>
+<script src="../js/uikit-icons.min.js"></script>
 <script type="text/javascript">
-   $(document).ready(function () {
-      $('.responsive').slick({
-          dots: true,
-          infinite: false,
-          speed: 300,
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          responsive: [
-          {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
-            }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2
-        }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-    }
-}
-    // You can unslick at a given breakpoint now by adding:
-    // settings: "unslick"
-    // instead of a settings object
-    ]
-});
-  });
+            $(document).ready(function () {
+                $('.responsive').slick({
+                    dots: true,
+                    infinite: false,
+                    speed: 300,
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 3,
+                                infinite: true,
+                                dots: true
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                        // You can unslick at a given breakpoint now by adding:
+                        // settings: "unslick"
+                        // instead of a settings object
+                    ]
+                });
+            });
 </script>
 <script>
     $("#nav-fotos-tab").click(function () {
@@ -135,10 +139,10 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8iWtevhRlfBxjQ_DVFGjnZZ3
     });
 </script>
 <script type="text/javascript">
-    $('#nav-caracteristicas-tab').click(function (){
+    $('#nav-caracteristicas-tab').click(function () {
         console.log('oi');
     });
-    $(document).ready(function (){
+    $(document).ready(function () {
         console.log('pronto');
     });
 </script>

@@ -18,13 +18,15 @@
     }
 
     #feature{
-        background-color: #EDEDED;
+        background-color: #FFF;
     }
 
     .categorias{
-        background-color: #DCDCDC;
+        background-color: #F7F7F7;
+        border-radius: 5px;
     }
 </style>
+<link rel="stylesheet" href="../css/uikit.min.css" />
 <?php
 include('../conexao.php');
 $imoveis = "SELECT * FROM imoveis";
@@ -37,7 +39,7 @@ $result2 = $mysqli->query($categorias);
 <?php
 ?>
 
-<section id="feature" class="section-padding">
+<section id="feature" >
     <div class="container">
         <div class="row categorias">
             <div class="col-md-12 ">
@@ -59,10 +61,10 @@ $result2 = $mysqli->query($categorias);
                 <!-- End Filter -->
             </div>
 
-            <div class="span9">
-                <div class="row">
-                    <section id="projects">
-                        <ul id="thumbs">
+            <div class="container-fluid">
+                <div   class="row">
+                    <section id="projects" class="col-md-12 col-sm-12 col-lg-12" >
+                        <ul id="thumbs" class="col-md-12 col-sm-12 col-lg-12">
 
                             <?php
                             while ($dados2 = $result->fetch_assoc()) {
@@ -71,7 +73,7 @@ $result2 = $mysqli->query($categorias);
                                 $result3 = $mysqli->query($sql3);
                                 $bairro = $result3->fetch_assoc();
                                 ?>
-                                <li class="item-thumbs span3 <?= $bairro['id'] ?>"  >
+                                <li class="item-thumbs span3 col-md-2 col-lg-2 col-xs-12 <?= $bairro['id'] ?>" style="max-width: 90%;"  >
                                     <input type="hidden" id="idImovi" value="<?= $dados2['id'] ?>">
                                     <a href="#fotos" class="hover-wrap movi" id="<?= $dados2['id'] ?>"  >
                                         <span  class="overlay-img"></span>
@@ -105,7 +107,8 @@ $result2 = $mysqli->query($categorias);
 
 </section>
 
-
+<script src="../js/uikit.min.js"></script>
+<script src="../js/uikit-icons.min.js"></script>
 
 <script src="../js/bootstrap.min.js"></script>
 

@@ -37,7 +37,14 @@ $result = $mysqli->query($sql);
                                         <label>Nome</label>
                                         <input type="text" name='nome' class="form-control">
                                     </div>
-                                    
+                                     <div class="form-group col-md-12">
+                                            <label>Imagem estática</label>
+                                            <input type="file" name='img' id='imagem' >
+                                        </div>
+                                     <div class="form-group col-md-12">
+                                            <label>Imagem hover</label>
+                                            <input type="file" name='img_hover' id='imagem' >
+                                        </div>
                                    
                                     <div class="form-group col-md-12">
                                         

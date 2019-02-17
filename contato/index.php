@@ -46,7 +46,7 @@ $b = rand(0, 19);
                                 <input type="number" class="form-control" name="result" placeholder="Resultado da soma:">
                             </div>
 
-                            <div class='form-group col-md-12'> <input type="submit" class="btn btn-send"></div>
+                            <div id="quero-vender-meu-imovel" class='form-group col-md-12'> <input type="submit" class="btn btn-send"></div>
 
                         </form>
 
@@ -179,6 +179,12 @@ $b = rand(0, 19);
 <script src="../admin/bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
 <script>
     $("#showr").click(function () {
+        $("#contato").first().show("slow", function showNext() {
+            $(this).next("#contato").show("slow", showNext);
+        });
+    });
+    
+    $("#botao_quero").click(function () {
         $("#contato").first().show("slow", function showNext() {
             $(this).next("#contato").show("slow", showNext);
         });
