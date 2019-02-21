@@ -4,8 +4,6 @@ include('../conexao.php');
 $sql = "SELECT * FROM imoveis WHERE destaque = 1";
 $result = $mysqli->query($sql);
 
-$sql2 = "SELECT diferenciais.*, icon.nome FROM diferenciais, icon WHERE diferenciais.icone_id = icon.id";
-$result2 = $mysqli->query($sql2);
 ?>
 
 
@@ -46,6 +44,7 @@ $result2 = $mysqli->query($sql2);
             }
             .uk-offcanvas-bar{
                 z-index: 9999;
+                width: 50%; 
             }
             .navbar-fixed-top{
                 z-index: 500;
@@ -53,6 +52,10 @@ $result2 = $mysqli->query($sql2);
             * + .uk-margin {
                 margin-top: 0px !important;
             }
+
+           
+
+            
         </style>
 
 
@@ -72,7 +75,7 @@ $result2 = $mysqli->query($sql2);
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
                                     <span class="fa fa-bars"></span>
                                 </button>
-                                <a href="index.html" class="navbar-brand"> <img src="../images/logo-gabriel.png" style="max-height: 50px;" class="logo img-responsive pull-left" alt=""/></a>
+                                <a href="../" class="navbar-brand"> <img src="../images/logo-gabriel.png" style="max-height: 50px;" class="logo img-responsive pull-left" alt=""/></a>
                                 <!-- 
                                
                                 -->
@@ -110,6 +113,7 @@ $result2 = $mysqli->query($sql2);
                         <img src="../images/imoveis/<?= $dados['imagem1'] ?>" alt="" uk-cover="" class="uk-cover" style="height: 1056px; width: 1584px;">
                         <div class="uk-position-center uk-position-medium uk-text-center">
                             <h1 class="uk-heading-hero" uk-slideshow-parallax="x: 200,-200" style="transform: translate3d(-200px, 0px, 0px);"><?= $dados['titulo'] ?></h1>
+                            <a style='border-radius:30px;' class="btn btn-primary btn-lg" href="#modal-full-<?= $dados['id'] ?>" uk-toggle>Saiba mais</a> 
                             <p class="uk-h1" uk-slideshow-parallax="x: 400,-400" style="transform: translate3d(-400px, 0px, 0px);"></p>
                         </div>
                     </li>
@@ -138,7 +142,7 @@ $result2 = $mysqli->query($sql2);
     <div class="container" uk-filter="target: .js-filter">
         <div class="row">
 
-            <div class="uk-grid-small uk-child-width-1-6@s uk-child-width-1-6@s uk-child-width-1-6@m uk-text-center" uk-grid>
+            <div class=" uk-flex-center uk-child-width-1-4@s uk-child-width-1-5@xl uk-text-center" uk-grid>
                 <?php
                 while ($dadosCat = $resultCat->fetch_assoc()) {
                     ?>
@@ -149,7 +153,7 @@ $result2 = $mysqli->query($sql2);
                             <div class="uk-card uk-card-cinza uk-card-body" >
 
 
-                                <img src="../images/categorias/<?= $dadosCat['img'] ?>" alt="" onmouseover="this.src = '../images/categorias/<?= $dadosCat['img_hover'] ?>';" onmouseout="this.src = '../images/categorias/<?= $dadosCat['img'] ?>';"/>
+                                <img src="../images/categorias/<?= $dadosCat['img'] ?>" alt="" class='img img-responsive' onmouseover="this.src = '../images/categorias/<?= $dadosCat['img_hover'] ?>';" onmouseout="this.src = '../images/categorias/<?= $dadosCat['img'] ?>';"/>
                                 <?= $dadosCat['nome'] ?>
 
 
@@ -159,7 +163,7 @@ $result2 = $mysqli->query($sql2);
                     <div id="offcanvas-push-<?= $dadosCat['id'] ?>" uk-offcanvas="mode: push; overlay: true">
                         <div class="uk-offcanvas-bar">
 
-                            <button class="uk-offcanvas-close" type="button" uk-close></button>
+                            <button class="uk-offcanvas-close" type="button" uk-icon="arrow-left" ></button>
 
                             <ul class="uk-thumbnav" uk-margin>
                                 <?php
@@ -167,10 +171,10 @@ $result2 = $mysqli->query($sql2);
                                 $resultImoveis = $mysqli->query($imoveisSQL);
                                 while ($dadosImv = $resultImoveis->fetch_assoc()) {
                                     ?>
-                                    <li><a href="#modal-full-<?= $dadosImv['id'] ?>" uk-toggle><img src="../images/imoveis/<?= $dadosImv['imagem1']; ?>" width="100" alt=""></a></li>
+                                    <li><a href="#modal-full-<?= $dadosImv['id'] ?>" uk-toggle><img src="../images/imoveis/<?= $dadosImv['imagem1']; ?>" width="200" alt=""></a></li>
                                     <div id="modal-full-<?= $dadosImv['id'] ?>" class="uk-modal-full" uk-modal>
                                         <div class="uk-modal-dialog">
-                                            <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+                                            <button class="uk-modal-close-full" uk-icon="arrow-left" type="button" ></button>
                                             <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
                                                 <div class="uk-background-cover" style="background-image: url('../images/imoveis/<?= $dadosImv['imagem1'] ?>');" uk-height-viewport></div>
                                                 <div class="uk-padding-large">

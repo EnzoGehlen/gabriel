@@ -424,6 +424,10 @@ function edita($tabela = null) {
                         }
                     }
                 }
+                $explode = explode('.',$imagem{$x});
+                if($explode[1] == ''){
+                    $imagem{$x} = '';
+                }
             }
 
             $sql = ("UPDATE imoveis SET titulo = '$titulo',  descricao = '$descricao', infraestrutura = '$infra', latitude = '$latitude', longitude = '$longitude', bairro_id = '$bairro_id',  categoria_id = '$categoria_id', destaque = '$destaque',  imagem1 = '$imagem[1]', imagem2 = '$imagem[2]', imagem3 = '$imagem[3]', imagem4 = '$imagem[4]', imagem5 = '$imagem[5]', imagem6 = '$imagem[6]' WHERE id = $id");
