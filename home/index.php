@@ -52,9 +52,6 @@ $result = $mysqli->query($sql);
                 margin-top: 0px !important;
             }
 
-
-
-
         </style>
 
 
