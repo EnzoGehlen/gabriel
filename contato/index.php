@@ -60,7 +60,7 @@ $b = rand(0, 19);
                     <h3 class="cont-title">Onde estamos</h3>
                     <div class="location-info">
                         <p class="white"><span aria-hidden="true" class="fa fa-map-marker"></span>Av. Santos Dumont, 559, Centro, Três Passos</p>
-                        <p class="white"><span aria-hidden="true" class="fa fa-phone"></span><a href="tel:55996237090">(55) 9 9623-7090</a></p>
+                        <p class="white"><span aria-hidden="true" class="fa fa-phone"></span><a style="text-decoration: none;" href="tel:55996237090">(55) 9 9623-7090</a></p>
                         <p class="white"><span aria-hidden="true" class="fa fa-envelope"></span>Email: <a href="mailto:gabrielchaves@creci.org.br" class="link-dec">gabrielchaves@creci.org.br</a></p>
                         <p class="white"><span aria-hidden="true" class="fa fa-money"></span><button id="showr" class="btn">Quero vender meu imóvel</button></p>
                     </div>

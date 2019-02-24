@@ -3,7 +3,6 @@
 include('../conexao.php');
 $sql = "SELECT * FROM imoveis WHERE destaque = 1";
 $result = $mysqli->query($sql);
-
 ?>
 
 
@@ -53,9 +52,9 @@ $result = $mysqli->query($sql);
                 margin-top: 0px !important;
             }
 
-           
 
-            
+
+
         </style>
 
 
@@ -175,12 +174,15 @@ $result = $mysqli->query($sql);
                                     <div id="modal-full-<?= $dadosImv['id'] ?>" class="uk-modal-full" uk-modal>
                                         <div class="uk-modal-dialog">
                                             <button class="uk-modal-close-full" uk-icon="arrow-left" type="button" ></button>
-                                            <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
-                                                <div class="uk-background-cover" style="background-image: url('../images/imoveis/<?= $dadosImv['imagem1'] ?>');" uk-height-viewport></div>
+                                            <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" style="min-height: 100%;" uk-grid>
+                                                
+                                                    <img src="../images/imoveis/<?= $dadosImv['imagem1'] ?>" class="img img-responsive"  alt="">
+                                                
                                                 <div class="uk-padding-large">
+                                                  
                                                     <h1><?= $dadosImv['titulo'] ?></h1>
                                                     <p><?= $dadosImv['descricao'] ?></p>
-
+                                                    <hr class="uk-divider-icon">
                                                     <div uk-lightbox> 
                                                         <ul class="uk-thumbnav" uk-margin>
                                                             <?php
@@ -240,7 +242,7 @@ $result = $mysqli->query($sql);
                     © Corretor Gabriel Chaves, CRECI nº52.472 F - Todos os direitos reservados
                     <div class="credits">
 
-                        Desenvolvido por <a href="mailto:enzo.gehlen@hotmail.com">Enzo Gehlen</a>
+                        Desenvolvido por <a style="text-decoration: none;" href="mailto:enzo.gehlen@hotmail.com">Enzo Gehlen</a>
                     </div>
                 </div>
                 <a href="https://www.facebook.com/imoveisgc/" class="uk-icon-button  uk-margin-small-right" uk-icon="facebook"></a>
