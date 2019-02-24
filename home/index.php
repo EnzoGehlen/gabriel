@@ -9,7 +9,7 @@ $result = $mysqli->query($sql);
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Gabriel Ch Imóveis</title>
+        <title>Gabriel Chaves Imóveis</title>
         <link rel="icon" 
               type="image/png" 
               href="../images/logo.png" />
