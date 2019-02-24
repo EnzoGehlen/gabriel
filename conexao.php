@@ -1,15 +1,10 @@
 <?php
 
 
-
-$host = 'sql304.epizy.com';
-
-$dbname = 'epiz_22370561_gabriel';
-
-$user = 'epiz_22370561';
-
-$pass = 'eqrkKT1WRXLZlJ';
-
+$host = '45.229.194.198';
+$dbname = 'teste';
+$user = 'root';
+$pass = '1234';
 
 
 $mysqli = new mysqli($host, $user, $pass, $dbname);

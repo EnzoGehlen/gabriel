@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/xampp/htdocs/gabriel/admin/rodape.php</file>
             <file>file:/C:/xampp/htdocs/gabriel/admin/inbox.php</file>
             <file>file:/C:/xampp/htdocs/gabriel/admin/showContato_vendas.php</file>
@@ -12,6 +13,13 @@
             <file>file:/C:/xampp/htdocs/gabriel/contato/index.php</file>
             <file>file:/C:/xampp/htdocs/gabriel/admin/addImovel.php</file>
             <file>file:/C:/xampp/htdocs/gabriel/admin/crud.php</file>
+=======
+            <file>file:/C:/xampp/htdocs/gabriel/imoveis/imoveis.php</file>
+            <file>file:/C:/xampp/htdocs/gabriel/css/uikit.css</file>
+            <file>file:/C:/xampp/htdocs/gabriel/home/index.php</file>
+            <file>file:/C:/xampp/htdocs/gabriel/home/ajax.php</file>
+            <file>file:/C:/xampp/htdocs/gabriel/css/style.css</file>
+>>>>>>> master
         </group>
     </open-files>
 </project-private>

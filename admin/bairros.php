@@ -4,7 +4,7 @@ include('cabecalho.php');
 include('menu.php');
 include('../conexao.php');
 
-$sql = "SELECT * FROM categorias";
+$sql = "SELECT * FROM bairros";
 $result = $mysqli->query($sql);
 ?>
 

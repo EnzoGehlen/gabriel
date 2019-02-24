@@ -39,6 +39,28 @@ $dados = $result->fetch_assoc();
                                         <label>Nome</label>
                                         <input type="text" name='nome' value="<?= $dados['nome'] ?>" class="form-control">
                                     </div>
+                                     
+                                    
+                                    
+                                     <div class="form-group col-sm-offset-2 pull-right col-md-12">
+                                        <label>Imagem estática atual</label>
+                                        <img class='img img-responsive' style='max-height: 150px;' src="../images/categorias/<?= $dados['img'] ?>" alt="" />
+                                    </div>
+                                    <div class="form-group col-sm-offset-2 col-md-8">
+                                        <label>Nova imagem estática</label>
+                                        <input type="file" name='img' >
+                                        <input type="hidden" name='imgg' value='<?= $dados['img'] ?>' >
+                                    </div>
+                                    
+                                    <div class="form-group col-sm-offset-2 pull-right col-md-12">
+                                        <label>Imagem hover atual</label>
+                                        <img class='img img-responsive' style='max-height: 150px;' src="../images/categorias/<?= $dados['img_hover'] ?>" alt="" />
+                                    </div>
+                                    <div class="form-group col-sm-offset-2 col-md-8">
+                                        <label>Nova imagem hover</label>
+                                        <input type="file" name='img_hover' >
+                                        <input type="hidden" name='imgg_hover' value='<?= $dados['img_hover'] ?>' >
+                                    </div>
                                     
                                    
                                     <div class="form-group col-md-12">

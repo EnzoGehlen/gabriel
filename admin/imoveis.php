@@ -4,7 +4,7 @@ include('cabecalho.php');
 include('menu.php');
 include('../conexao.php');
 
-$sql = "SELECT * FROM imoveis";
+$sql = "SELECT * FROM imoveis ORDER BY id DESC";
 $result = $mysqli->query($sql);
 ?>
 
@@ -42,9 +42,11 @@ $result = $mysqli->query($sql);
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
+                                        <th>Código</th>
                                         <th>Título</th>
                                         <th>Descrição</th>
                                         <th>Categoria</th>
+                                        <th>Está em destaque?</th>
                                         <th>Imagem</th>
                                         <th>Ações</th>
                                     </tr>
@@ -58,13 +60,24 @@ $result = $mysqli->query($sql);
                                         $nome_bairro = $result2->fetch_assoc();
                                         ?>
                                         <tr>
+                                             <td><?= $dados['id'] ?></td>       
                                             <td><?= $dados['titulo'] ?></td>                                       
 
                                              <td>  <?= substr($dados['descricao'], 0, 40); ?> ... </td>
 
                                             <td><?= $nome_bairro['nome'] ?></td>
-
-                                            <td><img class='enzo' src="../images/imoveis/<?= $dados['imagem'] ?>" alt=""/></td>
+                                           <?php
+                                        if ($dados['destaque'] == 1) {
+                                            ?>
+                                           <td>Sim</td>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <td>Não</td>
+                                            <?php
+                                        }
+                                        ?>
+                                            <td><img class='enzo' src="../images/imoveis/<?= $dados['imagem1'] ?>" alt=""/></td>
 
 
 
@@ -83,7 +96,7 @@ $result = $mysqli->query($sql);
                                                     <h4 class="modal-title">Atenção</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Você tem certeza que deseja excluir o imovel <?= $dados['titulo'] ?>?</p>
+                                                    <p>Você tem certeza que deseja excluir o imóvel <?= $dados['titulo'] ?>?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>

@@ -36,16 +36,20 @@ $dados = $result->fetch_assoc();
                             </div>
                             <div class="box-body">
                                 <form action="crud.php" method='POST' enctype="multipart/form-data">
-                                     <input type="hidden" name='action' value='edita'>
-                                     <input type="hidden" name='tabela' value='imoveis'>
-                                     <input type="hidden" name='id' value='<?= $dados['id'] ?>'>
+                                    <input type="hidden" name='action' value='edita'>
+                                    <input type="hidden" name='tabela' value='imoveis'>
+                                    <input type="hidden" name='id' value='<?= $dados['id'] ?>'>
                                     <div class="form-group col-md-12">
                                         <label>Título da publicação:</label>
                                         <input type="text" value="<?= $dados['titulo'] ?>" name='titulo' class="form-control">
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label>Descrição:</label>
-                                        <textarea type="textarea" value="<?= $dados['descricao'] ?>" name='descricao' class="form-control"></textarea>
+                                        <label>Características:</label>
+                                        <textarea type="textarea"  name='descricao' class="form-control"><?= $dados['descricao'] ?></textarea>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Infraestrutura:</label>
+                                        <textarea type="textarea"  name='infra' class="form-control"><?= @$dados['infraestrutura'] ?></textarea>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Bairro:</label>
@@ -67,7 +71,7 @@ $dados = $result->fetch_assoc();
 
 
                                     </div>
-                                      <div class="form-group col-md-4">
+                                    <div class="form-group col-md-4">
                                         <label>Categoria:</label>
 
                                         <select name="categoria_id" class="form-control select2" >
@@ -109,16 +113,21 @@ $dados = $result->fetch_assoc();
                                         }
                                         ?>
                                     </div>
-                                    <div class="form-group pull-right col-md-12">
-                                        <label>Imagem atual</label>
-                                        <img class='img img-responsive' style='max-height: 350px;' src="../images/imoveis/<?= $dados['imagem'] ?>" alt="" />
-                                    </div>
-                                    <div class="form-group col-md-8">
-                                        <label>Nova imagem</label>
-                                        <input type="file" name='imagem' value='<?= $dados['imagem'] ?>' id='imagem' >
-                                        <input type="hidden" name='imagemm' value='<?= $dados['imagem'] ?>' >
-                                    </div>
+                                    <?php
+                                    for ($x = 1; $x < 7; $x++) {
+                                        ?>
 
+
+                                        <div class="form-group pull-right col-md-12">
+                                            <label>Imagem <?= $x?> atual</label>
+                                            <img class='img img-responsive' style='max-height: 50px;' src="../images/imoveis/<?= $dados['imagem'.$x.''] ?>" alt="" />
+                                        </div>
+                                        <div class="form-group col-md-8">
+                                            <label>Nova imagem <?= $x?></label>
+                                            <input type="file" name='imagem<?=$x?>' value='<?= $dados['imagem'.$x.''] ?>' id='imagem' >
+                                            <input type="hidden" name='imagemm<?=$x?>' value='<?= $dados['imagem'.$x.''] ?>' >
+                                        </div>
+                                    <?php } ?>
                                     <div class="form-group col-md-12">
 
                                         <input type="submit" value="Salvar" name="submit" class="btn btn-twitter">
