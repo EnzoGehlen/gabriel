@@ -1,4 +1,5 @@
 <?php
+include('verifica.php');
 include('../conexao.php');
 $resultado = $mysqli->query('SELECT * FROM visitas');
 
@@ -55,7 +56,7 @@ $meses = json_encode($meses);
 
 
 
-include('verifica.php');
+
 include('cabecalho.php');
 include('menu.php');
 ?>
