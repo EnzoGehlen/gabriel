@@ -1,6 +1,7 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     @$action = $_POST['action'];
     @$tabela = $_POST['tabela'];
@@ -12,9 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-
 switch ($action) {
-    case 'deleta': deleta($tabela, $id);
+    case 'deleta':
+        @$usr = @$_GET['usr'];
+        deleta($tabela, $id, $usr);
         break;
     case 'adiciona': adiciona($tabela);
         break;
@@ -34,16 +36,34 @@ switch ($action) {
         break;
 }
 
-function deleta($tabela = null, $id = null) {
+function deleta($tabela = null, $id = null, $usr = null) {
     include('../conexao.php');
-
+    if(empty($usr)){
+        $usr = 'Externo';
+    }
+    $retrieve = "SELECT * FROM $tabela WHERE id = $id";
+    $resultado = $mysqli->query($retrieve);
+    $resultado = $resultado->fetch_assoc();
+    if ($tabela == 'imoveis'){
+        $titulo = $resultado['titulo'];
+        $categoria = $resultado['categoria_id'];
+        $insert = "INSERT INTO exclusoes (usuario, tabela, id_registro, titulo, categoria_id) VALUES ('$usr', '$tabela', '$id', '$titulo', '$categoria')";
+    } else {
+        $titulo = $resultado['nome'];
+        $insert = "INSERT INTO exclusoes (usuario, tabela, id_registro, titulo, categoria_id) VALUES ('$usr', '$tabela', '$id', '$titulo', '')";
+    }
     $sql = "DELETE FROM $tabela WHERE id = '$id'";
 
-
     if ($mysqli->query($sql) === TRUE) {
+
         if ($tabela == 'vendas') {
             header('location: contato_vendas.php');
         } else {
+            if ($mysqli->query($insert)=== TRUE){
+
+            } else {
+                echo "Erro: " . $mysqli->error;
+            }
             echo "Record deleted successfully";
             header('location: ' . $tabela . '.php');
         }
@@ -539,11 +559,11 @@ function login($id, $senha) {
             $_SESSION["nome_usuario"] = $dados["nome"];
             header('location: index.php');
         } else {
-            echo "<script> alert('Senha incorreta')</script> ";
+            echo "<script> alert('Email ou senha incorreto')</script> ";
             echo "<script>window.location.replace('index.php');</script>";
         }
     } else {
-        echo "<script> alert('Email incorreto')</script> ";
+        echo "<script> alert('Email ou senha incorreto')</script> ";
         echo "<script>window.location.replace('index.php');</script>";
     }
 }

@@ -74,7 +74,7 @@ $result = $mysqli->query($sql);
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
-                                                    <a href='crud.php?action=deleta&tabela=categorias&id=<?= $dados['id'] ?>'><button type="button"  class="btn btn-outline">Excluir</button></a>
+                                                    <a href='crud.php?action=deleta&tabela=categorias&id=<?= $dados['id'] ?>&usr=<?=$usr?>'><button type="button"  class="btn btn-outline">Excluir</button></a>
                                                 </div>
                                             </div>
                                             <!-- /.modal-content -->

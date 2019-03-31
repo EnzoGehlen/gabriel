@@ -13,6 +13,7 @@ $idUser = $_SESSION["id_usuario"];
 $sql2 = "SELECT * FROM g_users WHERE id = '$idUser' ";
 $result2 = $mysqli->query($sql2);
 $dados2 = $result2->fetch_assoc();
+$usr = $dados2['nome'];
 ?>
 
 <aside class="main-sidebar">

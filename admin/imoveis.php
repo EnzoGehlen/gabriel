@@ -82,7 +82,7 @@ $result = $mysqli->query($sql);
 
 
                                             <td>
-                                                <a href='../imoveis/index.php?lat=<?= $dados['latitude'] ?>&long=<?= $dados['longitude'] ?>#map' target="_blank"><i class='fa fa-plus' title="Ver no site"></i></a>
+                                                <a href='../home/#imovel-<?=$dados['id']?>' target="_blank"><i class='fa fa-plus' title="Ver no site"></i></a>
                                                 <a href='editImovel.php?id=<?= $dados['id'] ?>'><i class='fa fa-edit' title="Editar"></i></a>
                                                 <a href=''  data-toggle="modal" data-target="#<?= $dados['id'] ?>"><i class='fa fa-trash' title="Excluir"></i></a></td>
                                         </tr>
@@ -100,7 +100,7 @@ $result = $mysqli->query($sql);
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
-                                                    <a href='crud.php?action=deleta&tabela=imoveis&id=<?= $dados['id'] ?>'><button type="button"  class="btn btn-outline">Excluir</button></a>
+                                                    <a href='crud.php?action=deleta&tabela=imoveis&id=<?= $dados['id'] ?>&usr=<?=$usr?>'><button type="button"  class="btn btn-outline">Excluir</button></a>
                                                 </div>
                                             </div>
                                             <!-- /.modal-content -->
