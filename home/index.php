@@ -14,7 +14,7 @@ $mysqli->query($query);
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Gabriel Chaves Imóveis</title>
+    <title>Gabriel Chaves Corretor</title>
     <link rel="icon" 
     type="image/png" 
     href="../images/logo.png" />
@@ -166,14 +166,7 @@ $mysqli->query($query);
                             </a>
                         </li>
                     </div>
-                    <div id="offcanvas-push-<?= $dadosCat['id'] ?>" uk-offcanvas="mode: push; overlay: true">
-                        <div class="uk-offcanvas-bar">
-
-                            <button class="uk-offcanvas-close" type="button" uk-icon="arrow-left" ></button>
-
-                            
-                        </div>
-                    </div>
+                    
 
                 <?php } ?>
 
@@ -187,8 +180,8 @@ $mysqli->query($query);
             $resultImoveis = $mysqli->query($imoveisSQL);
             while ($dadosImv = $resultImoveis->fetch_assoc()) {
                 ?>
-                <li class="categoria-<?=$dadosImv['categoria_id']?>"><a href="#modal-full-<?= $dadosImv['id'] ?>" uk-toggle><img src="../images/imoveis/<?= $dadosImv['imagem1']; ?>" width="200" alt=""></a></li>
-                <div id="modal-full-<?= $dadosImv['id'] ?>" class="uk-modal-full" uk-modal>
+                <li class="categoria-<?=$dadosImv['categoria_id']?>"><a href="#imovel-<?= $dadosImv['id'] ?>" class="imovel-<?= $dadosImv['id'] ?>" uk-toggle><img src="../images/imoveis/<?= $dadosImv['imagem1']; ?>" width="200" alt=""></a></li>
+                <div id="imovel-<?= $dadosImv['id'] ?>" class="uk-modal-full" uk-modal>
                     <div class="uk-modal-dialog">
                         <button class="uk-modal-close-full" style="color: #FFF; background-color: 3cee9" uk-icon="arrow-left" type="button" ></button>
                         <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" style="min-height: 100%;" uk-grid>
@@ -268,7 +261,6 @@ $mysqli->query($query);
     <script src="../js/bootstrap.min.js"></script>
 
 
-
     <script>
 
 
@@ -294,6 +286,23 @@ $mysqli->query($query);
                                                 window.location.hash = hash;
                                             });
                                         } // End if
+                                    });
+                                });
+                            </script>
+
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+
+                                    var modal = window.location.href.split("#")[1];
+
+                                    if(modal) {
+                                        UIkit.modal("."+modal).show();
+
+
+                                    }
+                                    $('.js-filter').addClass('hidden');
+                                    $('.categorias-botao').click(function (){
+                                        $('.js-filter').removeClass('hidden');
                                     });
                                 });
                             </script>
