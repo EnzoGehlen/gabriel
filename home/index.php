@@ -3,6 +3,11 @@
 include('../conexao.php');
 $sql = "SELECT * FROM imoveis WHERE destaque = 1";
 $result = $mysqli->query($sql);
+
+$query = "INSERT INTO `visitas`(`id`) VALUES (null)";
+$mysqli->query($query);
+
+
 ?>
 
 

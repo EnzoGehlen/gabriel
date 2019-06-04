@@ -115,17 +115,22 @@ $dados = $result->fetch_assoc();
                                     </div>
                                     <?php
                                     for ($x = 1; $x < 7; $x++) {
+                                        $id = explode('.',$dados['imagem'.$x.'']);
+                                        
                                         ?>
 
-
+                                    
+                                        
+                                   
                                         <div class="form-group pull-right col-md-12">
-                                            <label>Imagem <?= $x?> atual</label>
-                                            <img class='img img-responsive' style='max-height: 50px;' src="../images/imoveis/<?= $dados['imagem'.$x.''] ?>" alt="" />
+                                            <input type="checkbox" id="<?=$id[0]?>" class="excluir">
+                                            <label>Excluir imagem <?= $x?> atual</label>
+                                            <img class="img img-responsive <?=$id[0]?>"  style='max-height: 50px;' src="../images/imoveis/<?= $dados['imagem'.$x.''] ?>" alt="" />
                                         </div>
                                         <div class="form-group col-md-8">
                                             <label>Nova imagem <?= $x?></label>
                                             <input type="file" name='imagem<?=$x?>' value='<?= $dados['imagem'.$x.''] ?>' id='imagem' >
-                                            <input type="hidden" name='imagemm<?=$x?>' value='<?= $dados['imagem'.$x.''] ?>' >
+                                            <input type="hidden" name='imagemm<?=$x?>' class="input-<?=$id[0]?>" value='<?= $dados['imagem'.$x.''] ?>' >
                                         </div>
                                     <?php } ?>
                                     <div class="form-group col-md-12">
@@ -149,6 +154,17 @@ $dados = $result->fetch_assoc();
     </div>
 </div>
 
+
 <?php
 include('rodape.php');
 ?>
+
+<script>
+    $('.excluir').click(function (){
+        var id = $(this).attr('id');
+        $('#'+id).addClass('hidden');
+        $('.'+id).addClass('hidden');
+        $('.input-'+id).attr('value', '');
+        
+    });
+</script>
