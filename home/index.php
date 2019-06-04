@@ -12,71 +12,72 @@ $mysqli->query($query);
 
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gabriel Chaves Imóveis</title>
-        <link rel="icon" 
-              type="image/png" 
-              href="../images/logo.png" />
+<head>
+    <meta charset="UTF-8">
+    <title>Gabriel Chaves Imóveis</title>
+    <link rel="icon" 
+    type="image/png" 
+    href="../images/logo.png" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300|Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300|Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
 
 
 
 
 
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
-
-        <script src="../js/jquery.min.js"></script>
 
 
-        <script src="../js/wow.js"></script>
-        <script src="../js/custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 
-        <link rel="stylesheet" href="../css/uikit.css" />
-        <script src="../js/uikit.js"></script>
-        <script src="../js/uikit-icons.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
 
-        <style>
-            a.categorias-botao{
-                text-decoration: none;
-            }
-            .uk-offcanvas-bar{
-                z-index: 9999;
-                width: 50%; 
-            }
-            .navbar-fixed-top{
-                z-index: 500;
-            }
-            * + .uk-margin {
-                margin-top: 0px !important;
-            }
+
+    <script src="../js/wow.js"></script>
+    <script src="../js/custom.js"></script>
+
+    <link rel="stylesheet" href="../css/uikit.css" />
+    <script src="../js/uikit.js"></script>
+    <script src="../js/uikit-icons.min.js"></script>
+
+    <style>
+    a.categorias-botao{
+        text-decoration: none;
+    }
+    .uk-offcanvas-bar{
+        z-index: 9999;
+        width: 50%; 
+    }
+    .navbar-fixed-top{
+        z-index: 500;
+    }
+    * + .uk-margin {
+        margin-top: 0px !important;
+    }
 
         </style>
 
 
 
 
-    </head>
 
-    <body>
-        <!--header-->
-        <header class="main-header" >
-            <div class="bg-color">
+</head>
 
-                <nav class="nav navbar-default navbar-fixed-top">
-                    <div class="container">
-                        <div class="col-md-12">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
-                                    <span class="fa fa-bars"></span>
-                                </button>
-                                <a href="../" class="navbar-brand"> <img src="../images/logo-gabriel.png" style="max-height: 50px;" class="logo img-responsive pull-left" alt=""/></a>
+<body>
+    <!--header-->
+    <header class="main-header" >
+        <div class="bg-color">
+
+            <nav class="nav navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="fa fa-bars"></span>
+                            </button>
+                            <a href="../" class="navbar-brand"> <img src="../images/logo-gabriel.png" style="max-height: 50px;" class="logo img-responsive pull-left" alt=""/></a>
                                 <!-- 
                                
                                 -->
@@ -145,74 +146,32 @@ $mysqli->query($query);
     <div class="container" uk-filter="target: .js-filter">
         <div class="row">
 
-            <div class=" uk-flex-center uk-child-width-1-4@s uk-child-width-1-5@xl uk-text-center" uk-grid>
+            <div class=" uk-flex-center uk-child-width-1-5@s uk-child-width-1-5@m uk-child-width-1-5@xl uk-text-center" uk-grid>
                 <?php
                 while ($dadosCat = $resultCat->fetch_assoc()) {
                     ?>
 
                     <div>
-                        <a class="categorias-botao" type="button" uk-toggle="target: #offcanvas-push-<?= $dadosCat['id'] ?>">
+                        <li uk-filter-control=".categoria-<?=$dadosCat['id']?>">
+                            <a class="categorias-botao" type="button" href="#">
 
-                            <div class="uk-card uk-card-cinza uk-card-body" >
-
-
-                                <img src="../images/categorias/<?= $dadosCat['img'] ?>" alt="" class='img img-responsive' onmouseover="this.src = '../images/categorias/<?= $dadosCat['img_hover'] ?>';" onmouseout="this.src = '../images/categorias/<?= $dadosCat['img'] ?>';"/>
-                                <?= $dadosCat['nome'] ?>
+                                <div class="uk-card uk-card-cinza uk-card-body" >
 
 
-                            </div>
-                        </a>
+                                    <img src="../images/categorias/<?= $dadosCat['img'] ?>" alt="" class='img img-responsive' onmouseover="this.src = '../images/categorias/<?= $dadosCat['img_hover'] ?>';" onmouseout="this.src = '../images/categorias/<?= $dadosCat['img'] ?>';"/>
+                                    <?= $dadosCat['nome'] ?>
+
+
+                                </div>
+                            </a>
+                        </li>
                     </div>
                     <div id="offcanvas-push-<?= $dadosCat['id'] ?>" uk-offcanvas="mode: push; overlay: true">
                         <div class="uk-offcanvas-bar">
 
                             <button class="uk-offcanvas-close" type="button" uk-icon="arrow-left" ></button>
 
-                            <ul class="uk-thumbnav" uk-margin>
-                                <?php
-                                $imoveisSQL = "SELECT * FROM imoveis WHERE categoria_id = {$dadosCat['id']}";
-                                $resultImoveis = $mysqli->query($imoveisSQL);
-                                while ($dadosImv = $resultImoveis->fetch_assoc()) {
-                                    ?>
-                                    <li><a href="#modal-full-<?= $dadosImv['id'] ?>" uk-toggle><img src="../images/imoveis/<?= $dadosImv['imagem1']; ?>" width="200" alt=""></a></li>
-                                    <div id="modal-full-<?= $dadosImv['id'] ?>" class="uk-modal-full" uk-modal>
-                                        <div class="uk-modal-dialog">
-                                            <button class="uk-modal-close-full" uk-icon="arrow-left" type="button" ></button>
-                                            <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" style="min-height: 100%;" uk-grid>
-                                                
-                                                    <img src="../images/imoveis/<?= $dadosImv['imagem1'] ?>" class="img img-responsive"  alt="">
-                                                
-                                                <div class="uk-padding-large">
-                                                  
-                                                    <h1><?= $dadosImv['titulo'] ?></h1>
-                                                    <p><?= $dadosImv['descricao'] ?></p>
-                                                    <hr class="uk-divider-icon">
-                                                    <div uk-lightbox> 
-                                                        <ul class="uk-thumbnav" uk-margin>
-                                                            <?php
-                                                            for ($x = 1; $x < 7; $x++) {
-                                                                if (!empty($dadosImv['imagem' . $x . ''])) {
-                                                                    ?>
-                                                                    <li>
-                                                                        <a href="../images/imoveis/<?= $dadosImv['imagem' . $x] ?>" data-caption="Imagem <?= $x ?>" >
-                                                                            <img src="../images/imoveis/<?= $dadosImv['imagem' . $x]; ?>" width="200" alt="" onerror="this.style.display='none'"/>
-                                                                        </a>
-                                                                    </li>
-
-
-                                                                    <?php
-                                                                }
-                                                            }
-                                                            ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                <?php } ?>
-                            </ul>
+                            
                         </div>
                     </div>
 
@@ -220,7 +179,54 @@ $mysqli->query($query);
 
             </div>
         </div>
+        <hr class="uk-divider-icon">
+        <ul class="js-filter uk-child-width-1-2 uk-child-width-1-6@m uk-text-center uk-thumbnav" uk-grid>
 
+            <?php
+            $imoveisSQL = "SELECT * FROM imoveis";
+            $resultImoveis = $mysqli->query($imoveisSQL);
+            while ($dadosImv = $resultImoveis->fetch_assoc()) {
+                ?>
+                <li class="categoria-<?=$dadosImv['categoria_id']?>"><a href="#modal-full-<?= $dadosImv['id'] ?>" uk-toggle><img src="../images/imoveis/<?= $dadosImv['imagem1']; ?>" width="200" alt=""></a></li>
+                <div id="modal-full-<?= $dadosImv['id'] ?>" class="uk-modal-full" uk-modal>
+                    <div class="uk-modal-dialog">
+                        <button class="uk-modal-close-full" style="color: #FFF; background-color: 3cee9" uk-icon="arrow-left" type="button" ></button>
+                        <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" style="min-height: 100%;" uk-grid>
+
+                            <img src="../images/imoveis/<?= $dadosImv['imagem1'] ?>" class="img img-responsive"  alt="">
+
+                            <div class="uk-padding-large">
+
+                                <h1><?= $dadosImv['titulo'] ?></h1>
+                                <p><?= $dadosImv['descricao'] ?></p>
+                                <hr class="uk-divider-icon">
+                                <div uk-lightbox> 
+                                    <ul class="uk-thumbnav" uk-margin>
+                                        <?php
+                                        for ($x = 1; $x < 7; $x++) {
+                                            if (!empty($dadosImv['imagem' . $x . ''])) {
+                                                ?>
+                                                <li>
+                                                    <a href="../images/imoveis/<?= $dadosImv['imagem' . $x] ?>" data-caption="Imagem <?= $x ?>" >
+                                                        <img src="../images/imoveis/<?= $dadosImv['imagem' . $x]; ?>" width="200" alt="" onerror="this.style.display='none'"/>
+                                                    </a>
+                                                </li>
+
+
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <?php } ?>
+
+        </ul>
     </div>
 
 
@@ -266,7 +272,7 @@ $mysqli->query($query);
     <script>
 
 
-                                $(document).ready(function () {
+        $(document).ready(function () {
                                     // Add smooth scrolling to all links
                                     $("a").on('click', function (event) {
 
@@ -290,8 +296,8 @@ $mysqli->query($query);
                                         } // End if
                                     });
                                 });
-    </script>
+                            </script>
 
 
-</body>
-</html>
+                        </body>
+                        </html>
